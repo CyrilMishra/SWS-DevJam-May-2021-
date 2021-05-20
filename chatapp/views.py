@@ -25,11 +25,11 @@ def converstion(request):
         message = request.POST.get('message')
         sdid = request.POST.get('send')
         # needs to be given by sesseion
-        id = "2020ca033"
-        ss = Signup.objects.get(student_id=id)
+        ids = request.session['user_id_session_login']
+        ss = Signup.objects.get(student_id=ids)
         ds = Signup.objects.get(student_id=sdid)
-        if (ChatTransaction.objects.filter(s=ss) & ChatTransaction.objects.filter(d=sdid)) or (ChatTransaction.objects.filter(s=ds) & ChatTransaction.objects.filter(d=id)):
-            data = ((ChatTransaction.objects.filter(s=ss) & ChatTransaction.objects.filter(d=sdid)) | (ChatTransaction.objects.filter(s=ds) & ChatTransaction.objects.filter(d=id)))
+        if (ChatTransaction.objects.filter(s=ss) & ChatTransaction.objects.filter(d=sdid)) or (ChatTransaction.objects.filter(s=ds) & ChatTransaction.objects.filter(d=ids)):
+            data = ((ChatTransaction.objects.filter(s=ss) & ChatTransaction.objects.filter(d=sdid)) | (ChatTransaction.objects.filter(s=ds) & ChatTransaction.objects.filter(d=ids)))
             sdata = data[0]
             print(sdata)
             obj_tr = Message(s=ss, d=sdid, transaction_id=sdata, message=message, time=datetime.now().time())
@@ -49,11 +49,11 @@ def converstion(request):
 
     sdid = request.GET.get('sdid')
     #needs to be tken from Session
-    id= "2020ca033"
+    ids= request.session['user_id_session_login']
     con_data= []
-    ss = Signup.objects.get(student_id=id)
+    ss = Signup.objects.get(student_id=ids)
     ds = Signup.objects.get(student_id=sdid)
-    data_message = (Message.objects.filter(s=ss).order_by('time') & Message.objects.filter(d=sdid)).order_by('time') | (Message.objects.filter(s=ds).order_by('time') & Message.objects.filter(d=id)).order_by('time')
+    data_message = (Message.objects.filter(s=ss).order_by('time') & Message.objects.filter(d=sdid)).order_by('time') | (Message.objects.filter(s=ds).order_by('time') & Message.objects.filter(d=ids)).order_by('time')
     for x in data_message:
         print(x.message)
         name = Signup.objects.get(student_id=x.s)
@@ -71,7 +71,7 @@ def chatapp(request):
 
     #chatapp brings session vvraiable
     # code need to removed when you get session
-    Myid ='2020ca033'
+    Myid = request.session['user_id_session_login']
     ss = Signup.objects.get(student_id=Myid)
     d = ChatTransaction.objects.filter(s = ss ).order_by('-time') | ChatTransaction.objects.filter(d = Myid).order_by('-time')
 

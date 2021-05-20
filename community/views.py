@@ -3,8 +3,17 @@ from django.shortcuts import render, HttpResponse
 from datetime import datetime
 from .models import CommunityQuestion, CommunityAnswer
 from register.models import Signup
+from register.views import login
 # Create your views here.
 # Community
+def logout(request):
+    try:
+        del request.session['user_id_session_login']
+    except:
+        pass
+    else:
+        return HttpResponse("<strong>You are logged out.</strong>")
+
 class Com():
     def __init__(self, student_id, stu_name, question_id, question_description,):
         self.student_id = student_id
@@ -29,8 +38,9 @@ def community(request):
         ans = request.GET.get('answer')
         print(qid)
         print(ans)
+        ids=request.session['user_id_session_login']
         query_question = CommunityQuestion.objects.get(question_id=qid)
-        query_User_id = Signup.objects.get(student_id = "2020ca033")
+        query_User_id = Signup.objects.get(student_id =ids )
         ans_obj =CommunityAnswer(question_id=query_question, student_id= query_User_id, answer_discrption = ans)
         ans_obj.save()
     if request.method != "POST":
@@ -39,8 +49,8 @@ def community(request):
         #print(request.POST.get('Question'))
         question = request.POST.get('Question')
         dep = request.POST.get('option')
-        #id = "2020ca033"
-        Myid = Signup.objects.get(student_id="2020ca033")
+        ids = request.session['user_id_session_login']
+        Myid = Signup.objects.get(student_id=ids)
         name= Myid.name
         communityQuestion = CommunityQuestion(stu_name=name, student_id=Myid, question_description=question, publishing_date=datetime.today(), stu_department=dep)
         communityQuestion.save()
@@ -76,7 +86,8 @@ def profile(request):
         }
         return render(request, 'profiles.html', context)
     else:
-        Myid = Signup.objects.get(student_id="2020ca033")
+        ids = request.session['user_id_session_login']
+        Myid = Signup.objects.get(student_id=ids)
         context = {
             "info" : Myid
         }
@@ -113,7 +124,7 @@ def communityanswer(request):
     if request.method == "POST" and request.POST.get('submitAnswer'):
         if request.POST.get('file'):
             file = request.POST.get('file')
-            stuid = "2020ca033"
+            stuid = request.session['user_id_session_login']
             ansdes= request.POST.get('answer_discription')
             qid=request.GET.get('key')
             data_quuestion = CommunityQuestion.objects.get(question_id=qid)
@@ -122,7 +133,7 @@ def communityanswer(request):
             cmans.save()
         else:
             #file = request.POST.get('file')
-            stuid = "2020ca033"
+            stuid = request.session['user_id_session_login']
             ansdes = request.POST.get('answer_discription')
             qid = request.GET.get('key')
             data_quuestion = CommunityQuestion.objects.get(question_id=qid)
