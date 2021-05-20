@@ -39,7 +39,7 @@
              <!---submit button--->
                 <div class="row">
                 <div class="col-2 offset-9">
-                    <button type="submit" class="btn btn-primary mt-3">post</button>
+                    <button type="submit" name="post_question" value="question" class="btn btn-primary mt-3">post</button>
                 </div>
             </div>
             <!---submit button over--->
@@ -58,7 +58,8 @@
                             <div class="col-1">
                                 <img src="{% static 'profile.png' %} " style="width: 40px;height: 40px;">
                             </div>
-                                <a href="profile?pid={{ x.student_id }}" style="text-decoration: none; color: black"><p>{{ x.stu_name }}</p>
+                            <a href="profile?pid={{ x.student_id }}" style="text-decoration: none; color: black"><p>{{ x.stu_name }}</p></a>
+
                             <div class="col-1">
                             </div>
                         </div>
@@ -75,7 +76,10 @@
                 </div>
            </div>
         {% endfor %}
-        <button class="btn btn-light">show more</button>
+        <form method="post">
+            {% csrf_token %}
+        <button name="showmore" value="{{ a }}" class="btn btn-light">show more</button>
+        </form>
     </div>
 
 {% endblock %}

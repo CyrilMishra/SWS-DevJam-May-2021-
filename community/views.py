@@ -6,6 +6,7 @@ from register.models import Signup
 from register.views import login
 # Create your views here.
 # Community
+
 def logout(request):
     try:
         del request.session['user_id_session_login']
@@ -21,17 +22,31 @@ class Com():
         self.question_id = question_id
         self.question_description = question_description
 def community(request):
-    my_obj_list= []
-    data = CommunityQuestion.objects.all()[:5]
-    for x in data:
-        name = Signup.objects.get(student_id=x.student_id)
-        obj = Com(x.student_id, name.name, x.question_id, x.question_description)
-        my_obj_list.append(obj)
-    for x in my_obj_list:
-        print(x.stu_name)
+    
+    my_obj_list = []
+    if request.method == "POST" and request.POST.get('showmore'):
+        a=int(request.POST.get('showmore'))
+        a=int(a+5)
+        data = CommunityQuestion.objects.all()[:a]
+        for x in data:
+            name = Signup.objects.get(student_id=x.student_id)
+            obj = Com(x.student_id, name.name, x.question_id, x.question_description)
+            my_obj_list.append(obj)
+        for x in my_obj_list:
+            print(x.stu_name)
+    else:
+        a=5;
+        data = CommunityQuestion.objects.all()[:a]
+        for x in data:
+            name = Signup.objects.get(student_id=x.student_id)
+            obj = Com(x.student_id, name.name, x.question_id, x.question_description)
+            my_obj_list.append(obj)
+        for x in my_obj_list:
+            print(x.stu_name)
     #print(data)
     context = {
         "student_question" : my_obj_list,
+        "a": a,
     }
     if request.method == "GET" and request.GET.get('subque'):
         qid = request.GET.get('subque')
@@ -43,17 +58,17 @@ def community(request):
         query_User_id = Signup.objects.get(student_id =ids )
         ans_obj =CommunityAnswer(question_id=query_question, student_id= query_User_id, answer_discrption = ans)
         ans_obj.save()
-    if request.method != "POST":
-        pass
-    else:
-        #print(request.POST.get('Question'))
+    if request.method == "POST" and request.POST.get('post_question'):
+        # print(request.POST.get('Question'))
         question = request.POST.get('Question')
         dep = request.POST.get('option')
         ids = request.session['user_id_session_login']
         Myid = Signup.objects.get(student_id=ids)
-        name= Myid.name
-        communityQuestion = CommunityQuestion(stu_name=name, student_id=Myid, question_description=question, publishing_date=datetime.today(), stu_department=dep)
+        name = Myid.name
+        communityQuestion = CommunityQuestion(stu_name=name, student_id=Myid, question_description=question,
+                                              publishing_date=datetime.today(), stu_department=dep)
         communityQuestion.save()
+
     return render(request, 'community.html', context)
 
 
@@ -95,14 +110,45 @@ def profile(request):
 
 
 # communityanswer
-def communityanswer(request):
+class Com_Ans():
+    def __init__(self,answer_id, name ,answer_discrption ,upvote ,downvote ):
+        self.answer_id = answer_id
+        self.name = name
+        self.answer_discrption = answer_discrption
+        self.upvote = upvote
+        self.downvote = downvote
 
-    mykey = request.GET.get('key')
-    question_data = CommunityQuestion.objects.get(question_id=mykey)
-    data = CommunityAnswer.objects.filter(question_id=mykey)
+def communityanswer(request):
+    if request.method == "POST" and request.POST.get('showmore'):
+        a = int(request.POST.get('showmore'))
+        a = int(a+5)
+        mydata = []
+        mykey = request.GET.get('key')
+        question_data = CommunityQuestion.objects.get(question_id=mykey)
+        data = CommunityAnswer.objects.filter(question_id=mykey)[:a]
+        for x in data:
+            check_id = x.student_id
+            check_data = Signup.objects.get(student_id=check_id)
+            check_question_desciption = x.answer_discrption
+            obj = Com_Ans(x.answer_id, check_data.name, check_question_desciption, x.upvote, x.downvote)
+            mydata.append(obj)
+    else:
+        a=5
+        mydata = []
+        mykey = request.GET.get('key')
+        question_data = CommunityQuestion.objects.get(question_id=mykey)
+        data = CommunityAnswer.objects.filter(question_id=mykey)[:a]
+        for x in data:
+            check_id = x.student_id
+            check_data = Signup.objects.get(student_id=check_id)
+            check_question_desciption = x.answer_discrption
+            obj = Com_Ans(x.answer_id, check_data.name, check_question_desciption, x.upvote, x.downvote)
+            mydata.append(obj)
+
     context = {
         "question_data": question_data,
-        "answer_data": data
+        "answer_data": mydata,
+        "a" : a,
     }
     if request.method == "POST" and request.POST.get('upvote'):
         ansid = request.POST.get('upvote')
@@ -150,4 +196,5 @@ def communityanswer(request):
         #     "question_data" : question_data,
         #     "answer_data" : data
         #}
-        return render(request, 'communityanswer.html',context)
+        return render(request, 'communityanswer.html', context)
+    return render(request, 'communityanswer.html',context)
