@@ -12,7 +12,7 @@ def logout(request):
     except:
         pass
     else:
-        return HttpResponse("<strong>You are logged out.</strong>")
+        return HttpResponse("<strong>You are logged out.</strong><br><a href='login'>click here to login</a>")
 
 class Com():
     def __init__(self, student_id, stu_name, question_id, question_description,):

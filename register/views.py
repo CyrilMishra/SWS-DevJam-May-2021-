@@ -16,7 +16,7 @@ def logout(request):
     except:
         pass
     else:
-        return HttpResponse("<strong>You are logged out.</strong>")
+        return HttpResponse("<strong>You are logged out.</strong><a href='login'>click here to login</a>")
 
 
 def home(request):

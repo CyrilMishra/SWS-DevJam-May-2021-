@@ -12,7 +12,7 @@ def logout(request):
     except:
         pass
     else:
-        return HttpResponse("<strong>You are logged out.</strong>")
+        return HttpResponse("<strong>You are logged out.</strong><br><a href='login'>click here to login</a>")
 
 def bsihome(request,):
 	i = Item.objects.all()
