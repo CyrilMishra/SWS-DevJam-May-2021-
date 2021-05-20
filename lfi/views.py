@@ -8,6 +8,14 @@ from .forms import *
 
 # Create your views here.
 
+def logout(request):
+    try:
+        del request.session['user_id_session_login']
+    except:
+        pass
+    else:
+        return HttpResponse("<strong>You are logged out.</strong>")
+
 def lfihome(request):
     li = LostItem.objects.all()
 

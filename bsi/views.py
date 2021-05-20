@@ -6,6 +6,13 @@ from .models import *
 from .forms import SellForm
 
 # Create your views here.
+def logout(request):
+    try:
+        del request.session['user_id_session_login']
+    except:
+        pass
+    else:
+        return HttpResponse("<strong>You are logged out.</strong>")
 
 def bsihome(request,):
 	i = Item.objects.all()

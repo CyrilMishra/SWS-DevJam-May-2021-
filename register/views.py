@@ -10,6 +10,14 @@ from .forms import SignupForm
 
 
 # Create your views here.
+def logout(request):
+    try:
+        del request.session['user_id_session_login']
+    except:
+        pass
+    else:
+        return HttpResponse("<strong>You are logged out.</strong>")
+
 
 def home(request):
 
