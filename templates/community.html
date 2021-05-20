@@ -1,0 +1,81 @@
+
+{% extends 'navbar.html' %}
+{% load static %}
+{% block head%}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %} ">
+{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row " >
+                <div class="form-group col-md-7 m-auto">
+                    <label>enter you post</label>
+                    <textarea class="form-control" name="Question" rows="3" placeholder="Enter Your Question" required></textarea>
+                </div>
+                <div class="w100"></div>
+                <div class="form-group col-md-7 m-auto  mt-4">
+                    <label>Select Target audience</label>
+                    <!---Dropdown for target audience--->
+                            <select required class="form-select" name="option" aria-label="Select Course">
+                              <option value="">Select course</option>
+                              <option value="MCA">Mca</option>
+                              <option value="BTECH">B.tech</option>
+                              <option value="MBA">Mba</option>
+                            </select>
+                    <!---drop down over--->
+                </div>
+            </div>
+
+            <div class="row">
+                 <div class="col-md-3 m-auto">
+
+                 </div>
+            </div>
+             <!---submit button--->
+                <div class="row">
+                <div class="col-2 offset-9">
+                    <button type="submit" class="btn btn-primary mt-3">post</button>
+                </div>
+            </div>
+            <!---submit button over--->
+        </form>
+    </div>
+    <!---container 2 for feeds--->
+    <div class="container">
+
+        <label>Want to answer</label>
+        {% for x in student_question %}
+
+        <div class="row ">
+                <div class="col-md-7 m-auto mt-3 groove">
+                    <form method="get">
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="{% static 'profile.png' %} " style="width: 40px;height: 40px;">
+                            </div>
+                                <a href="profile?pid={{ x.student_id }}" style="text-decoration: none; color: black"><p>{{ x.stu_name }}</p>
+                            <div class="col-1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <a href="communityanswer?key={{ x.question_id }}" style="text-decoration: none; color:black" value="{{ x.question_id }}" >{{ x.question_description }}</a>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="answer" id="answer"placeholder="answer this question" required>
+                        </div>
+                        <div class="col-1">
+                            <a href="community?QID={{ x.question_id }}"><button class="btn btn-primary" name="subque" value="{{ x.question_id }}">post</button></a>
+                        </div>
+                    </form>
+                </div>
+           </div>
+        {% endfor %}
+        <button class="btn btn-light">show more</button>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'bsi/main.html' %}
+
+
+{% block content %}
+ 
+{% include 'bsi/status.html' %}
+
+ <br>
+
+<div class="row" align="center">
+  <div class="col-md-6" align="center">
+    <h5>Want to sell Item ?</h5>
+    <hr>
+    <div class="card card-body">
+      <a class="btn btn-primary  btn-sm btn-block" href="{% url 'sell' %}">Make Your Own Free Add :)</a>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <h5>Buy available items ?</h5>
+    <hr>
+    <div class="card card-body">
+      <a class="btn btn-primary  btn-sm btn-block" href="{% url 'buy' %}">Search For Item</a>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}

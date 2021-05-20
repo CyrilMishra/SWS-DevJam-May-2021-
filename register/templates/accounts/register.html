@@ -1,0 +1,180 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}" >
+
+
+    
+  </head>
+  <body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Sellout Store</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Lost/Found Item</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            HelpDesk
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">
+            Resources</a></li>
+            <li><a class="dropdown-item" href="#">Community</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Notification</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Student ID - </a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 offset-10">
+                <a style="text-decoration:none" href="{url 'login' }"><button class="btn btn-primary">Already Registered?</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+  <head>
+    <meta charset="utf-8">
+    <title>Account Registration</title>
+  </head>
+  <body>
+    <form class="signup-form" action="" method="POST">
+      {% csrf_token %}
+      <!-- form header -->
+      <div class="form-header">
+        <h1>Create User Account</h1>
+      </div>
+
+      <!-- form body -->
+      <div class="form-body">
+
+        <!-- Firstname and Lastname -->
+        <div class="form-group">
+            <label for="name" class="label-title">Full Name *</label>
+            <input type="text" id="name" class="form-input" placeholder="Enter Your Full Name" name="name"required="required" />
+          </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" class="label-title">Email*</label>
+          <input type="email" name="email" id="email" class="form-input" placeholder="Enter Your Email ID provided By College" required="required">
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password" class="label-title">Password *</label>
+            <input type="password" id="password" class="form-input" placeholder="Enter Your Password" name="password" required="required">
+        </div>
+
+        <!-- Gender and Birthday -->
+        <div class="horizontal-group">
+          <div class="form-group left">
+            <label class="label-title">Gender*</label>
+            <div class="input-group">
+              <label for="male"><input type="radio" name="gender" value="male" id="male"> Male</label>
+              <label for="female"><input type="radio" name="gender" value="female" id="female"> Female</label>
+                <label for="other"><input type="radio" name="gender" value="other" id="other"> Other</label>
+            </div>
+          </div>
+          <div class="form-group right">
+            <label for="birthday" class="label-title">Birthday*</label>
+              <div><input type="date" id="birthday" name="dob"></div>
+
+          </div>
+        </div>
+
+        <!-- Course and Student ID -->
+        <div class="horizontal-group">
+          <div class="form-group left" >
+            <label class="label-title">Course</label>
+            <select class="form-input" id="level" name="course">
+              <option value="A">BTech</option>
+              <option value="B">MTech</option>
+              <option value="C">MCA</option>
+              <option value="D">MBA</option>
+              <option value="E">MSc</option>
+              <option value="F">PhD</option>
+            </select>
+          </div>
+          <div class="form-group right">
+            <label for="student_id" class="label-title">Student Registration ID*</label>
+            <input type="text" id="student_id" class="form-input" placeholder="Enter Student ID" required="required" name="student_id">
+          </div>
+        </div>
+
+        <!-- Profile picture and Mobile Number -->
+        <div class="horizontal-group">
+          <div class="form-group left" >
+            <label for="choose-file" class="label-title">Upload Profile Picture</label>
+            <input type="file" id="photo" size="80" name="profile_pic">
+          </div>
+          <div class="form-group right">
+            <label for="mobile_number" class="label-title">Mobile Number(+91)</label>
+            <input type="tel" class="form-input" name="mobile_number">
+          </div>
+        </div>
+
+
+
+      <!-- form-footer -->
+      <div class="form-footer">
+
+        <button type="submit" class="btn">Create</button>
+          <span>* required</span>
+      </div>
+
+      </div>
+    </form>
+
+
+  </body>
+
+
+
+
+
+
+<footer style="padding-top: 100px">
+  <div class="container-fluid ">
+    <div class="row mt-6" style="background-color: black; height: 100px;">
+        <div class="col">
+            <p style="color: aliceblue" align="center">WOC code with destroyer</p>
+        </div>
+    </div>
+  </div>
+</footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+  </body>
+</html>

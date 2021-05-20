@@ -1,0 +1,15 @@
+{% extends 'bsi/main.html' %}
+
+{%load static%}
+
+{% block content %}
+
+ <br>
+<form action="{% url 'sellpost' %}" method = "POST">
+  {% csrf_token %}
+  {{form}}
+  <input type="submit" name="Submit">
+
+</form>
+
+ {% endblock %}

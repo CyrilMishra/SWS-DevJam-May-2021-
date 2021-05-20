@@ -1,0 +1,72 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %} ">
+{% endblock %}
+{% block body %}
+    <!--- this is answer community --->
+
+        <div method="post" class="container">
+        <form method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col">
+
+                        <div class="form-group">
+                            <p name="question"><h1 style="font-family: cursive">{{ question_data.question_description }}</h1></p>
+                        </div>
+                    </div>
+                </div>
+             <!---write your own answer--->
+            <div class="row">
+                <div class="col-8 m-auto">
+
+                        <div class="form-group">
+                           <textarea class="form-control" rows="3" name="answer_discription" placeholder="Write your answer" required></textarea>
+                        </div>
+
+                        </div>
+                        <div class="w100">
+                        <div class="col-3 offset-2">
+                            <input type="file" name="file">
+                        </div>
+                        <div class="col-1 offset-9">
+                            <button type="submit" name="submitAnswer" value="answer" class="btn btn-info" >Post</button>
+                        </div>
+                </div>
+            </div>
+        </form>
+
+            <!---- end your answer--->
+                {% for x in answer_data %}
+
+            <div class="answer">
+                <div class="row mt-5">
+                    <div class="col-1">
+                        <div class="user">
+                            <img  style="height: 40px;width: 40px;" src="{% static 'profile.png' %}">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <p>Name of the user<p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 offset-1">
+                        {{ x.answer_discrption }}
+                    </div>
+                    <div class="w100"></div>
+                    <div class="col-6 offset-1 mt-3">
+                        <form method="post">
+                            {% csrf_token %}
+                                <button class=" btn btn-outline-success" name="upvote" value="{{ x.answer_id }}">upvote {{ x.upvote }}</button>
+                                <button class=" btn btn-outline-danger" name="downvote" value="{{ x.answer_id }}">down vote {{ x.downvote }}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                {% endfor %}
+            <button class="btn btn-light">show more</button>
+        </div>
+        </div>
+{% endblock %}

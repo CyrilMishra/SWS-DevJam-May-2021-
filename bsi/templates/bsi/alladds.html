@@ -1,0 +1,42 @@
+{% extends 'bsi/main.html' %}
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>All Adds</h5>
+		</div>
+		<div class="card card-body">
+			<table class="table">
+				<tr>
+					<th>Item</th>
+					<th>Pic</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Posted By</th>
+					<th>Chat with Seller</th>
+				</tr>
+				{% for i in items %}
+					<tr>
+						<td>{{i.item_name}}</td>
+						<td><img src="{{i.item_pic1}}"></td>
+						<td>{{i.item_description}}</td>
+						<td>Rs {{i.item_price}}</td>
+						<td>{{i.student}}
+							<a class="btn btn-primary  btn-sm btn-block"  href="profile?pid={{ i.student }}">View Profile</a>
+						</td>
+						<td>
+							<a class="btn btn-primary  btn-sm btn-block"  href="conversation?sdid={{ i.student }}">Message</a>
+						</td>
+						
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+	
+</div>
+
+{% endblock content %}

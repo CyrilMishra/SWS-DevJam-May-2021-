@@ -1,0 +1,54 @@
+
+{% extends 'navbar.html' %}
+
+{% block head %}
+<style>
+    .box{
+        border-style: groove;
+        height : 600px;
+        border-radius: 10%;
+        background-color: azure;
+    }
+    .box-innner{
+        border-style: groove;
+        height : 500px;
+        overflow-y: scroll;
+        max-height: 100%;
+        background-color: lightseagreen;
+    }
+    .message-container{
+        border-style: groove;
+        border-radius: 5%;
+        background-color: white;
+    }
+</style>
+
+{% endblock %}
+{% block title %}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="container box">
+        <div class="row">
+            <div class="col-md-8 m-auto box-innner">
+                <h1>Chat Box</h1>
+                {% for x in mydata %}
+                    <div class="message-container">
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <a style="text-decoration: none; font-size: 35px; color: black; margin-top: 10%" href="conversation?sdid={{ x.id }}">{{ x.name }}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 offset-1">
+                                {{ x.msg }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

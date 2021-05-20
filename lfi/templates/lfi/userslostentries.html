@@ -1,0 +1,55 @@
+{% extends 'lfi/main.html' %}
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Your Lost Entries</h5>
+		</div>
+		<div class="card card-body">
+			<table class="table">
+				<tr>
+					<th>Item</th>
+					<th>Pic</th>
+					<th>Description</th>
+					<th>Type</th>
+					<th>Place</th>
+					<th>Time Around</th>
+					<th>Date</th>
+					<th>Price</th>
+					<th>Color</th>
+					<th>Shape</th>
+					<th>Author Name</th>
+					<th>Company Type</th>
+					<th>Actions</th>
+				</tr>
+				{% for uli in items %}
+					<tr>
+						<td>{{uli.item_name}}</td>
+						<td><img src= "{{uli.item_pic1}}">
+						</td>
+						<td>{{uli.item_description}}</td>
+						<td>{{uli.item_type}}</td>
+						<td>{{uli.lost_place}}</td>
+						<td>{{uli.lost_time}}</td>
+						<td>{{uli.lost_date}}</td>
+						<td>Rs {{uli.item_price}}</td>
+						<td>{{uli.item_color}}</td>
+						<td>{{uli.shape}}</td>
+						<td>{{uli.author_name}}</td>
+						<td>{{uli.company_type}}</td>
+						<td>
+							<a class="btn btn-primary  btn-sm btn-block" href="">Edit</a>
+							<a class="btn btn-primary  btn-sm btn-block" href="">Remove</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+	
+</div>
+
+{% endblock content %}

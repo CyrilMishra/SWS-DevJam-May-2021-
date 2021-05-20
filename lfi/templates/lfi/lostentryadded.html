@@ -1,0 +1,38 @@
+{% extends 'lfi/main.html' %}
+
+
+{% block content %}
+
+ <br>
+
+ 	<div class="row">
+  <div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white  mb-2" id="total-orders">
+          <div class="card-header">
+            <h5 class="card-title">Report Posted Successfully</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">
+            </h6> 
+            <h1 class="card-title">
+              <a class="btn btn-primary  btn-sm btn-block" href="{% url 'matchingitems' %}">Check For Match</a>
+            </h1>
+            <h1 class="card-title">
+              <a class="btn btn-primary  btn-sm btn-block" href="">go back</a>
+            </h1>
+          </div>
+      </div>
+    </div>
+  </div	
+
+  
+
+
+
+  
+
+
+
+
+ {% endblock %}

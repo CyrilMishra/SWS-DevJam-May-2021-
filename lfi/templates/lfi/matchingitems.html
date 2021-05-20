@@ -1,0 +1,37 @@
+{% extends 'lfi/main.html' %}
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Your Found Entries</h5>
+		</div>
+		<div class="card card-body">
+			<table class="table">
+				<tr>
+					<th>Item</th>
+					<th>Pic</th>
+					<th>Description</th>
+					<th>Founded By</th>
+				</tr>
+				{% for fli in items %}
+					<tr>
+						<td>{{fli.item_name}}</td>
+						<td>{{fli.item_pic1}}</td>
+						<td>{{fli.item_description}}</td>
+						<td>
+						{{fli.student}}
+						<a class="btn btn-primary  btn-sm btn-block" href="">Message</a>
+						</td>
+						
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+	
+</div>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'bsi/main.html' %}
+
+
+{% block content %}
+
+ <br>
+
+ 	<div class="row">
+  <div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white  mb-2" id="total-orders">
+          <div class="card-header">
+            <h5 class="card-title">Add Posted Successfully</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">
+            </h6> 
+            <h1 class="card-title">
+              <a class="btn btn-primary  btn-sm btn-block" href="{% url 'useradds' %}">Your posted Adds</a>
+            </h1>
+            <h1 class="card-title">
+              <a class="btn btn-primary  btn-sm btn-block" href="{% url 'alladds' %}">Browse all Adds</a>
+            </h1>
+          </div>
+      </div>
+    </div>
+  </div	
+
+  
+
+
+
+  
+
+
+
+
+ {% endblock %}

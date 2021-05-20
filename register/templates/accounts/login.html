@@ -1,0 +1,128 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+   
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}" >
+
+  </head>
+  <body>
+
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Sellout Store</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Lost/Found Item</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            HelpDesk
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">
+            Resources</a></li>
+            <li><a class="dropdown-item" href="#">Community</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Notification</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Student ID - </a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 offset-10">
+                <a style="text-decoration:none" href="signup"><button class="btn btn-danger">Not Registered ? Sign Up For Free</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+  <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Login</title>
+    <!---<link rel="stylesheet" href="style.css">---->
+  </head>
+  <body>
+    <form class="signup-form" method="POST">
+        {% csrf_token %}
+      <!-- form header -->
+      <div class="form-header">
+        <h1>Login To Account</h1>
+      </div>
+
+      <!-- form body -->
+      <div class="form-body">
+
+
+
+        <div class="form-group">
+            <label for="student_id" class="label-title">Student Registration ID</label>
+            <input type="text" id="student_id" name="userid" class="form-input" placeholder="Enter Your Registered Student ID" required="required">
+          </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password" class="label-title">Password</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="Enter Your Password" required="required">
+        </div>
+
+
+
+
+      <!-- form-footer -->
+
+        <button type="submit" name="submit" value="submit" class="btn">Login</button>
+
+      </div>
+    </form>
+
+
+  </body>
+</html>
+
+
+
+
+
+
+<footer style="padding-top: 100px">
+  <div class="container-fluid ">
+    <div class="row mt-6" style="background-color: black; height: 100px;">
+        <div class="col">
+            <p style="color: aliceblue" align="center">WOC code with destroyer</p>
+        </div>
+    </div>
+  </div>
+</footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+  </body>
+</html>
