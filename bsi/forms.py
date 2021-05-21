@@ -7,10 +7,4 @@ class SellForm(ModelForm):
 	class Meta:
 		model= Item
 		# field = [ 'customer' , 'product']
-		fields = '__all__' ;
-
-
-class SellUpdateForm(ModelForm):
-	class Meta:
-		model = Item
-		exclude=('student',)
+		fields = '__all__'

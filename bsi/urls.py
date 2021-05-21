@@ -9,6 +9,4 @@ urlpatterns = [
 	path("sellpost",views.sellpost,name="sellpost"),
 	path("useradds",views.useradds,name="useradds"),
 	path("alladds",views.alladds,name="alladds"),
-	path("updatePost",views.updatePost,name="updatePost"),
-	path("deletePost",views.deletePost,name="deletePost"),
 ]
