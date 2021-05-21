@@ -1,12 +1,13 @@
 import register
 import lfi
 import bsi
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect
 from datetime import datetime
 from .models import CommunityQuestion, CommunityAnswer
 from register.models import Signup
 from lfi.models import FoundItem
 from bsi.models import Item
+from register.views import login
 from register.views import login
 # Create your views here.
 # Community
@@ -16,7 +17,8 @@ class Manage_Post():
         self.question_description = question_description
         self.id = question_id
 def EditPost(request):
-
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     if request.method == "POST" and request.POST.get('updatepass'):
         qid = request.POST.get('updatepass')
         data = CommunityQuestion.objects.get(question_id=qid)
@@ -29,6 +31,8 @@ def EditPost(request):
     }
     return render(request,'editpost.html',context)
 def ManagePost(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     a=10
     ids = request.session['user_id_session_login']
     data_ids = Signup.objects.get(student_id=ids)
@@ -60,6 +64,8 @@ class Com():
         self.question_id = question_id
         self.question_description = question_description
 def community(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
 
     my_obj_list = []
     if request.method == "POST" and request.POST.get('showmore'):
@@ -112,6 +118,8 @@ def community(request):
 
 # Profile
 def profile(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     if request.method == "POST" and request.POST.get('update_pass'):
         print(request.POST.get('update_pass'))
         context = {
@@ -157,6 +165,8 @@ class Com_Ans():
         self.downvote = downvote
 
 def communityanswer(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     if request.method == "POST" and request.POST.get('showmore'):
         a = int(request.POST.get('showmore'))
         a = int(a+5)
@@ -239,8 +249,14 @@ def communityanswer(request):
 
 #search box
 def search(request):
-    #if not request.POST.get('searchbox'):
-
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
+    if not request.POST.get('searchbox'):
+        user_id=request.session['user_id_session_login']
+        context={
+            "uersid":user_id
+        }
+        return redirect('login')
     #print("hello")
     key = request.POST.get('searchbox')
     #print(key)
