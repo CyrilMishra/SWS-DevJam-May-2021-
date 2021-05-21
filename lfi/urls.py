@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
 
-	path("lfihome",views.lfihome,name="home"),
+	path("lfihome",views.lfihome,name="lfihome"),
 	path("lostreport",views.lostreport,name="lostreport"),
 	path("foundreport",views.foundreport,name="foundreport"),
 	path("lostentryadded",views.lostentryadded,name="lostentryadded"),

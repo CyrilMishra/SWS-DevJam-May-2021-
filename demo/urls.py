@@ -22,6 +22,8 @@ urlpatterns = [
 
     path('', include('bsi.urls'), name='bsi'),
 
+    path('notes/',include('notes.urls')),
+
     path('', include('lfi.urls'), name='lfi'),
     path('', include('chatapp.urls')),
     path('', include('community.urls'))
