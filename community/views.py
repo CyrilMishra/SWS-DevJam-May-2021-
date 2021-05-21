@@ -1,8 +1,12 @@
 import register
+import lfi
+import bsi
 from django.shortcuts import render, HttpResponse
 from datetime import datetime
 from .models import CommunityQuestion, CommunityAnswer
 from register.models import Signup
+from lfi.models import FoundItem
+from bsi.models import Item
 from register.views import login
 # Create your views here.
 # Community
@@ -232,3 +236,20 @@ def communityanswer(request):
         #}
         return render(request, 'communityanswer.html', context)
     return render(request, 'communityanswer.html',context)
+
+#search box
+def search(request):
+    #if not request.POST.get('searchbox'):
+
+    #print("hello")
+    key = request.POST.get('searchbox')
+    #print(key)
+    data = Signup.objects.filter(name__icontains=key)[:5]
+    data2 = FoundItem.objects.filter(item_name__icontains=key)[:5]
+    data3 = Item.objects.filter(item_name__icontains=key)[:5]
+    context={
+        "data":data,
+        "data2":data2,
+        "data3":data3,
+    }
+    return render(request,'search.html',context)

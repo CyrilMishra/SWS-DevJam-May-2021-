@@ -67,8 +67,13 @@ def matchingitems(request):
 
 
 def userfoundentries(request):
-    items = FoundItem.objects.filter(student="1")
-    return render(request, 'lfi/userfoundentries.html', {'items': items})
+    if request.GET.get('fid'):
+        key = request.GET.get('fid')
+        items = FoundItem.objects.filter(id=key)
+        return render(request, 'lfi/userfoundentries.html', {'itemsfound': items})
+    else:
+        items = FoundItem.objects.filter(student="1")
+        return render(request, 'lfi/userfoundentries.html', {'items': items})
 
 
 def userslostentries(request):

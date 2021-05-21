@@ -2,7 +2,58 @@
 {% block content %}
 
 <br>
+{% if itemsfound %}
 
+
+    <div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5> Founded Entries</h5>
+		</div>
+		<div class="card card-body">
+			<table class="table">
+				<tr>
+					<th>Item</th>
+					<th>Pic</th>
+					<th>Description</th>
+					<th>Type</th>
+					<th>Place</th>
+					<th>Time Around</th>
+					<th>Date</th>
+					<th>Price</th>
+					<th>Color</th>
+					<th>Shape</th>
+					<th>Author Name</th>
+					<th>Company Type</th>
+				</tr>
+				{% for fli in itemsfound %}
+					<tr>
+						<td>{{fli.item_name}}</td>
+						<td>
+							<img src="{{fli.item_pic1}}"></td>
+						<td>{{fli.item_description}}</td>
+						<td>{{fli.item_type}}</td>
+						<td>{{fli.lost_place}}</td>
+						<td>{{fli.lost_time}}</td>
+						<td>{{fli.lost_date}}</td>
+						<td>Rs {{fli.item_price}}</td>
+						<td>{{fli.item_color}}</td>
+						<td>{{fli.shape}}</td>
+						<td>{{fli.author_name}}</td>
+						<td>{{fli.company_type}}</td>
+
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+</div>
+{% endif %}
+
+
+{% if items %}
+    
 <div class="row">
 	<div class="col-md">
 		<div class="card card-body">
@@ -51,5 +102,9 @@
 	</div>
 	
 </div>
-
+    
+{% endif %}
+    {% if not itemsfound and not items  %}
+        <h1>No data found</h1>
+    {% endif %}
 {% endblock content %}

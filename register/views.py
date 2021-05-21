@@ -44,6 +44,12 @@ def update_profile(request, pk):
 
 
 def login(request):
+    if request.session.has_key('user_id_session_login'):
+        user_id = request.session['user_id_session_login']
+        context = {
+            "user": user_id
+        }
+        return render(request, 'accounts/dashboard.html', context)
     if request.method == "POST" and request.POST.get('submit'):
         print('Printing_POST :', request.POST)
         user_id = request.POST.get('userid')
