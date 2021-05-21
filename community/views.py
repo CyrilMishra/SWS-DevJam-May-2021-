@@ -4,6 +4,7 @@ from datetime import datetime
 from .models import CommunityQuestion, CommunityAnswer
 from register.models import Signup
 from register.views import login
+from register.views import *
 # Create your views here.
 # Community
 
@@ -74,11 +75,22 @@ def community(request):
 
 # Profile
 def profile(request):
-    if request.method == "POST" and request.POST.get('update_pass'):
-        print(request.POST.get('update_pass'))
-        context = {
+    if request.method == "POST" and request.POST.get('change_pass'):
+        stid = request.POST.get('student_id')
+        info = Signup.objects.get(student_id=stid)
+        context={
+            'info':info
         }
         return render(request, 'updatepass.html' , context)
+    if request.method == "POST" and request.POST.get('update_pass'):
+        stid = request.POST.get('student_id')
+        new_pass=request.POST.get('new_pass')
+        #print(new_pass)
+        obj_user = Signup.objects.get(student_id=stid)
+        obj_user.password=new_pass
+        obj_user.save()
+        return render(request, 'accounts/dashboard.html')
+
     if request.method == "POST" and request.POST.get('updateinfo'):
         #print(request.POST.get('updateinfo'))
         stid = request.POST.get('student_id')

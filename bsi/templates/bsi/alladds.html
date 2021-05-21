@@ -1,4 +1,5 @@
 {% extends 'bsi/main.html' %}
+<title>Adds Available</title>
 {% block content %}
 
 <br>
@@ -24,7 +25,7 @@
 						<td><img src="{{i.item_pic1}}"></td>
 						<td>{{i.item_description}}</td>
 						<td>Rs {{i.item_price}}</td>
-						<td>{{i.student}}
+						<td>{{i.student.name}}
 							<a class="btn btn-primary  btn-sm btn-block"  href="profile?pid={{ i.student }}">View Profile</a>
 						</td>
 						<td>

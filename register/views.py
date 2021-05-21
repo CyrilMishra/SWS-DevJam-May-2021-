@@ -1,9 +1,8 @@
 from django.shortcuts import render
-
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from django.contrib import messages
 from .models import *
 
 from .forms import SignupForm
@@ -25,22 +24,19 @@ def home(request):
 
 
 def signup(request):
+
     form = SignupForm()
     if request.method == 'POST':
         # print('Printing_POST :',request.POST)
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,'Student Register Success')
             return redirect('/login')
     context = {'form': form}
 
     return render(request, 'accounts/signup_form.html', context)
 
-
-def update_profile(request, pk):
-    form = SignupForm()
-    context = {}
-    return render(request, 'accounts/signup_form.html', context)
 
 
 def login(request):
