@@ -1,8 +1,10 @@
 import register
-from django.shortcuts import render, HttpResponse
+
+from django.shortcuts import render, HttpResponse,redirect
 from register.models import Signup
 from .models import Message, ChatTransaction
 from datetime import datetime
+from register.views import login
 # Create your views here.
 class myobject():
     def __init__(self,id,name,msg):
@@ -20,7 +22,8 @@ class MessageClass():
 
 
 def converstion(request):
-
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     if request.method == "POST" and request.POST.get('send'):
         message = request.POST.get('message')
         sdid = request.POST.get('send')
@@ -31,7 +34,7 @@ def converstion(request):
         if (ChatTransaction.objects.filter(s=ss) & ChatTransaction.objects.filter(d=sdid)) or (ChatTransaction.objects.filter(s=ds) & ChatTransaction.objects.filter(d=ids)):
             data = ((ChatTransaction.objects.filter(s=ss) & ChatTransaction.objects.filter(d=sdid)) | (ChatTransaction.objects.filter(s=ds) & ChatTransaction.objects.filter(d=ids)))
             sdata = data[0]
-            print(sdata)
+            #print(sdata)
             obj_tr = Message(s=ss, d=sdid, transaction_id=sdata, message=message, time=datetime.now().time())
             obj_tr.save()
 
@@ -55,7 +58,7 @@ def converstion(request):
     ds = Signup.objects.get(student_id=sdid)
     data_message = (Message.objects.filter(s=ss).order_by('time') & Message.objects.filter(d=sdid)).order_by('time') | (Message.objects.filter(s=ds).order_by('time') & Message.objects.filter(d=ids)).order_by('time')
     for x in data_message:
-        print(x.message)
+        #print(x.message)
         name = Signup.objects.get(student_id=x.s)
         #message = x.message
         id =x.s
@@ -68,7 +71,8 @@ def converstion(request):
 
     return render(request, 'conversation.html', context)
 def chatapp(request):
-
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     #chatapp brings session vvraiable
     # code need to removed when you get session
     Myid = request.session['user_id_session_login']
@@ -81,28 +85,28 @@ def chatapp(request):
         my =str(x.s)
         el =str(x.d)
         if my != Myid:
-            print(type(x.s))
-            print(type(Myid))
-            print("if block")
-            print(x.s)
+           # print(type(x.s))
+            #print(type(Myid))
+            #print("if block")
+            #print(x.s)
 
             fi = Signup.objects.get(student_id=x.s)
             msg = Message.objects.filter(s=x.s).last()
             obj = myobject(x.s, fi.name, msg.message)
             s.append(obj)
         elif  el != Myid:
-            print(type(x.d))
-            print(type(Myid))
-            print("elseif block")
-            print(x.d)
+       #     print(type(x.d))
+        #    print(type(Myid))
+         #   print("elseif block")
+          #  print(x.d)
             fi = Signup.objects.get(student_id=x.d)
             msg = Message.objects.filter(s=x.s).last()
             obj = myobject(x.d, fi.name, msg.message)
             s.append(obj)
-    print(s)
-    for x in s:
-        print(x.id)
-        print(x.name)
+
+    #for x in s:
+     #   print(x.id)
+      #  print(x.name)
     context = {
         "mydata": s
     }
