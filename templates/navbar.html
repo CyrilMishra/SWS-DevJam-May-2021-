@@ -8,9 +8,8 @@
   <style>
     .footer {
   position: -webkit-sticky;
-  position: static;
-        top : 100%;
-  bottom: 0;
+  position: fixed;
+          bottom: 0;
   background-color: white;
    text-align: center;
         width: 100%;
@@ -60,7 +59,7 @@
     </div>
  {% block body %}{% endblock body %}
 
-<footer class="footer" style="padding-top: 100px">
+<footer class="footer">
   <div class="container-fluid ">
     <div class="row mt-6" style="background-color: black; height: 50px;">
         <div class="col">

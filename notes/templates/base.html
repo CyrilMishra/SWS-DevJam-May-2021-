@@ -5,6 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   {% block head %}{% endblock %}
+   <style>
+    .footer {
+  position: -webkit-sticky;
+  position: fixed;
+
+  bottom: 0;
+  background-color: white;
+   text-align: center;
+        width: 100%;
+}
+</style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>{% block title %}{% endblock title %}</title>
   </head>
@@ -46,9 +57,9 @@
     </div>
  {% block body %}{% endblock body %}
 
-<footer style="padding-top: 100px">
+<footer class="footer" style="padding-top: 100px">
   <div class="container-fluid ">
-    <div class="row mt-6" style="background-color: black; height: 100px;">
+    <div class="row mt-6" style="background-color: black; height: 40px;">
         <div class="col">
             <p style="color: aliceblue">WOC code with destroyer</p>
         </div>

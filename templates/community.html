@@ -25,7 +25,9 @@
                               <option value="">Select course</option>
                               <option value="MCA">Mca</option>
                               <option value="BTECH">B.tech</option>
-                              <option value="MBA">Mba</option>
+                              <option value="MSc">MSc</option>
+                              <option value="MTech">MTech</option>
+                              <option value="Ph.D">Ph.D</option>
                             </select>
                     <!---drop down over--->
                 </div>
@@ -46,9 +48,10 @@
         </form>
     </div>
     <!---container 2 for feeds--->
-    <div class="container">
-
-        <label>Want to answer</label>
+    <div class="container" style="margin-bottom: 100px">
+        {% if student_question %}
+        <label><h2>Want to answer</h2></label>
+        {% endif %}
         {% for x in student_question %}
 
         <div class="row ">
@@ -76,10 +79,16 @@
                 </div>
            </div>
         {% endfor %}
+        {% if student_question %}
         <form method="post">
             {% csrf_token %}
         <button name="showmore" value="{{ a }}" class="btn btn-light">show more</button>
         </form>
+        {% endif %}
+    {% if not student_question %}
+
+        <h1>Enter question to see in your feeds</h1>
+    {% endif %}
     </div>
 
 {% endblock %}

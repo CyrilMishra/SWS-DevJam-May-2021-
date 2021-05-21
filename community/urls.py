@@ -12,7 +12,11 @@ urlpatterns = [
     path("ManagePost",views.ManagePost,name="ManagePost"),
     path("logout",views.logout,name="logout"),
     path("EditPost",views.EditPost,name="EditPost"),
-    path("search",views.search,name="search")
+    path("search",views.search,name="search"),
+    path("updatepass",views.updatepass,name="updatepass"),
+    path("updatelogout",views.updatelogout,name="updatelogout"),
+    path("updatefaultlogout",views.updatefaultlogout,name="updatefaultlogout"),
+
 
 ]
 if settings.DEBUG:

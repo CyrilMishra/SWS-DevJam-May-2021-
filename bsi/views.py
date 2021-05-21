@@ -17,6 +17,8 @@ def logout(request):
         return HttpResponse("<strong>You are logged out.</strong><br><a href='login'>click here to login</a>")
 
 def bsihome(request,):
+	if not request.session.has_key('user_id_session_login'):
+		return redirect('login')
 	i = Item.objects.all()
 	id = Signup.objects.get(student_id=request.session['user_id_session_login'])
 
@@ -29,6 +31,8 @@ def bsihome(request,):
 	return render(request,'bsi/bsidashboard.html',context)
 
 def sell(request):
+	if not request.session.has_key('user_id_session_login'):
+		return redirect('login')
 	if request.method == 'POST' and request.POST.get('update')  :
 		myid = request.GET.get('kid')
 		print(myid)
@@ -56,19 +60,27 @@ def sell(request):
 	return render(request,'bsi/sell.html',context)
 
 def buy(request):
+	if not request.session.has_key('user_id_session_login'):
+		return redirect('login')
 	items = Item.objects.all()
 	context={ 'items' : items}
 	return render(request,'bsi/alladds.html',context)
 
 def sellpost(request):
+	if not request.session.has_key('user_id_session_login'):
+		return redirect('login')
 	return render(request,'bsi/sellpost.html')
 
 def useradds(request):
+	if not request.session.has_key('user_id_session_login'):
+		return redirect('login')
 	id = Signup.objects.get(student_id=request.session['user_id_session_login'])
 	items = Item.objects.filter(student=id)
 	return render(request,'bsi/useradds.html',{'items':items})
 
 def alladds(request):
+	if not request.session.has_key('user_id_session_login'):
+		return redirect('login')
 	if request.GET.get('itemid'):
 		ids = request.GET.get('itemid')
 		items = Item.objects.filter(id=ids)
@@ -82,6 +94,8 @@ def alladds(request):
 # -------------------(UPDATE VIEWS) -------------------
 
 def updatePost(request):
+	if not request.session.has_key('user_id_session_login'):
+		return redirect('login')
 	myid = request.GET.get('pid')
 	print(myid)
 	post = Item.objects.get(id=myid)
@@ -99,6 +113,8 @@ def updatePost(request):
 # -------------------(DELETE VIEWS) -------------------
 
 def deletePost(request):
+	if not request.session.has_key('user_id_session_login'):
+		return redirect('login')
 	myid = request.GET.get('kid')
 	print(myid)
 	return HttpResponse(myid)

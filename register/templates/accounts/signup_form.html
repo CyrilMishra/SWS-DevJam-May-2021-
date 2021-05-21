@@ -42,57 +42,109 @@
         </div>
     </div>
 
-<div class="i-am-centered">
+<div class="container">
     <form action="{% url 'signup' %}" method="POST">
 	{% csrf_token %}
+        <div class="row">
+            <div class="col-8 m-auto">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-3">
+                            <label for="name" class="label-title">Full Name *</label>
+                        </div>
+                        <div class="col-3">
+                            {{ form.name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-3">
+                      <label for="email" class="label-title">Email*</label>
+                            </div>
+                        <div class="col-3">
+                        {{ form.email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-3">
+                        <label for="password" class="label-title">Password *</label>
+                        </div>
+                        <div class="col-3">
+                            {{ form.password }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                <div class="form-group">
+                    <div class="col-3">
+                    <label class="label-title">Gender*</label>
+                    </div>
+                    <div class="col-3">
+                        {{ form.gender }}
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+
+                <div class="form-group">
+                    <div class="col-3">
+                    <label for="birthday" class="label-title">Birthday*</label>
+                    </div>
+                    <div class="col-3">
+                        {{ form.dob }}
+                    </div>
+                </div>
+                </div>
+                <div class="row">
 
 
-        <div class="form-group">
-            <label for="name" class="label-title">Full Name *</label>
-            {{ form.name }}
+                <div class="form-group " >
+                    <div class="col-3">
+                    <label class="label-title">Course</label>
+                    </div>
+                    <div class="col-3">
+                    {{ form.course }}
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="form-group ">
+                    <div class="col-3">
+                    <label for="student_id" class="label-title">Student Registration ID*</label>
+                    </div>
+                    <div class="col-3">
+                        {{ form.student_id }}
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="form-group " >
+                    <div class="col-3">
+                    <label for="choose-file" class="label-title">Upload Profile Picture</label>
+                    </div>
+                    <div class="col-3">
+                        {{ form.photo }}
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="form-group ">
+                    <div class="col-3">
+                    <label for="mobile_number" class="label-title">Mobile Number(+91)</label>
+                    </div>
+                    <div class="col-3">
+                        {{ form.mobile_number }}
+                    </div>
+                </div>
+                </div>
+
+                <input type="submit"  name="Submit"/>
+            </div>
         </div>
-
-        <div class="form-group">
-          <label for="email" class="label-title">Email*</label>
-            {{ form.email }}
-        </div>
-
-        <div class="form-group">
-            <label for="password" class="label-title">Password *</label>
-                {{ form.password }}
-        </div>
-
-        <div class="form-group">
-            <label class="label-title">Gender*</label>
-            {{ form.gender }}
-        </div>
-
-        <div class="form-group">
-            <label for="birthday" class="label-title">Birthday*</label>
-               {{ form.dob }}
-        </div>
-
-        <div class="form-group " >
-            <label class="label-title">Course</label>
-            {{ form.course }}
-        </div>
-
-        <div class="form-group ">
-            <label for="student_id" class="label-title">Student Registration ID*</label>
-            {{ form.student_id }}
-        </div>
-
-        <div class="form-group " >
-            <label for="choose-file" class="label-title">Upload Profile Picture</label>
-            {{ form.photo }}
-        </div>
-
-        <div class="form-group ">
-            <label for="mobile_number" class="label-title">Mobile Number(+91)</label>
-                {{ form.mobile_number }}
-        </div>
-
-        <input type="submit"  name="Submit"/>
     </form>
 
 </div>
