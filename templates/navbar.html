@@ -7,13 +7,12 @@
   {% block head %}{% endblock %}
   <style>
     .footer {
-  position: -webkit-sticky;
-  position: static;
-        top : 100%;
-  bottom: 0;
-  background-color: white;
+   /*position: fixed;*/
+   left: 0;
+   bottom: 0;
+   width: 100%;
+
    text-align: center;
-        width: 100%;
 }
 </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,14 +24,14 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="community">Community</a>
+    <a class="navbar-brand" href="home">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="login">Home</a>
+          <a class="nav-link active" aria-current="page" href="community">community</a>
         </li>
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="bsihome">Sellout Store</a>
@@ -42,10 +41,9 @@
 
         </li>
       </ul>
-      <form method="post" action="search" class="d-flex">
-          {% csrf_token %}
-        <input class="form-control me-2" type="search" name="searchbox" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit"  name="search">Search</button>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </div>

@@ -1,0 +1,60 @@
+
+{% extends 'navbar.html' %}
+{% load static %}
+<head>
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% block title %}
+    profile
+{% endblock title %}
+</head>
+{% block body %}
+
+    <h1>Change Your Password</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 order-md-last">
+                <div class="row">
+                    <div class="col">
+                        <img src="{% static 'profile.png'%}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 order-md-first">
+                <div class="profile">
+                <form method="post">
+                     {% csrf_token %}
+                    <div class="form-group mt-6">
+                        <label for name>Name </label>
+                        <input type="text" name="name" class="form-control" value="{{ info.name }}" readonly>
+                    </div>
+                    <div class="form-group mt-6">
+                        <label for name>Student Id </label>
+                        <input type="text" name="student_id" value="{{ info.student_id }}" class="form-control" placeholder="{{ info.student_id }}" readonly>
+                    </div>
+                    <div class="form-group mt-6">
+                        <label for name>Email </label>
+                        <input type="text" class="form-control" placeholder="{{ info.email }}" readonly>
+                    </div>
+                    <div class="form-group mt-6">
+                        <label for name>Course </label>
+                        <input type="text" class="form-control" placeholder="{{ info.course }}"readonly>
+                    </div>
+                    <div class="form-group mt-6">
+                        <label for name>New Password </label>
+                        <input name ="new_pass" type="password" class="form-control" placeholder="new password"required>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-6">
+                        <button class="btn btn-primary" name="update_pass" value="{{ info.student_id }}">update password</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
