@@ -23,10 +23,13 @@
 						<td><img src = "{{i.item_pic1}}"></td>
 						<td>{{i.item_description}}</td>
 						<td>Rs {{i.item_price}}</td>
+                        <form action="sell" method="POST">
+                            {% csrf_token %}
 						<td>
-							<a class="btn btn-primary  btn-sm btn-block" name="update" href="sell?pid={{ i.pk }}">Edit</a>
-							<a class="btn btn-primary  btn-sm btn-block"  href="deletePost?pid={{ i.pk }}">Remove</a>
+							<a class="btn btn-primary  btn-sm btn-block" name="edit" href="sell?kid={{ i.pk }}">Edit</a>
+							<a class="btn btn-primary  btn-sm btn-block"  name ="remove" href="deletePost?kid={{ i.pk }}">Remove</a>
 						</td>
+                        </form>
 					</tr>
 				{% endfor %}
 			</table>

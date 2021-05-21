@@ -29,12 +29,12 @@ def bsihome(request,):
 	return render(request,'bsi/bsidashboard.html',context)
 
 def sell(request):
-	if request.method == 'GET' :
-		myid = request.GET.get('pid')
+	if request.method == 'POST' and request.POST.get('update')  :
+		myid = request.GET.get('kid')
 		print(myid)
 		post = Item.objects.get(id=myid)
 		form = SellForm(instance=post)
-		if request.method == 'GET' and request.GET.get('pid'):
+		if request.method == 'GET' and request.GET.get('kid'):
 			form = SellForm(request.GET, instance=post)
 			if form.is_valid():
 				form.save()
@@ -93,14 +93,14 @@ def updatePost(request):
 # -------------------(DELETE VIEWS) -------------------
 
 def deletePost(request):
-	myid = request.GET.get('pid')
+	myid = request.GET.get('kid')
 	print(myid)
 	return HttpResponse(myid)
-	if request.method == "GET" and request.GET.get('pid'):
-		myid = request.GET.get('pid')
-		post = Item.objects.get(id=myid)
-		post.delete()
-		messages.success(request,'Post Deleted Succesfully')
-		return redirect(useradds)
-
-	return render(request, 'accounts/delete_item.html', {'item': post})
+	# if request.method == "GET" and request.GET.get('kid'):
+	# 	myid = request.GET.get('kid')
+	# 	post = Item.objects.get(id=myid)
+	# 	post.delete()
+	# 	messages.success(request,'Post Deleted Succesfully')
+	# 	return redirect(useradds)
+	#
+	# return render(request, 'accounts/delete_item.html', {'item': post})
