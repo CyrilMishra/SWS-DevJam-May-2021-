@@ -69,8 +69,14 @@ def useradds(request):
 	return render(request,'bsi/useradds.html',{'items':items})
 
 def alladds(request):
-	items = Item.objects.filter(status="available")
-	return render(request, 'bsi/alladds.html', {'items':items})
+	if request.GET.get('itemid'):
+		ids = request.GET.get('itemid')
+		items = Item.objects.filter(id=ids)
+		return render(request, 'bsi/alladds.html', {'items': items})
+	else:
+		items = Item.objects.filter(status="available")
+		return render(request, 'bsi/alladds.html', {'items': items})
+
 # Create your views here.
 
 # -------------------(UPDATE VIEWS) -------------------

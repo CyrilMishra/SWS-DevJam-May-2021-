@@ -10,11 +10,13 @@
         background-color: azure;
     }
     .box-innner{
+        border-radius: 5%;
         border-style: groove;
         height : 500px;
         overflow-y: scroll;
+
         max-height: 100%;
-        background-color: lightseagreen;
+        background:linear-gradient(55deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 85%); ;
     }
     .message-container{
         border-style: groove;
@@ -32,7 +34,7 @@
 
     <div class="container box">
         <div class="row">
-            <div class="col-md-8 m-auto box-innner">
+            <div class="col-md-8 m-auto  box-innner">
                 <h1>Chat Box</h1>
                 {% for x in mydata %}
                     <div class="message-container">
@@ -43,7 +45,7 @@
                         </div>
                         <div class="row">
                             <div class="col-8 offset-1">
-                                {{ x.msg }}
+                                {{ x.msg | truncatewords:20}}
                             </div>
                         </div>
                     </div>

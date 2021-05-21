@@ -40,6 +40,12 @@ def signup(request):
 
 
 def login(request):
+    if request.session.has_key('user_id_session_login'):
+        user_id = request.session['user_id_session_login']
+        context = {
+            "user": user_id
+        }
+        return render(request, 'accounts/dashboard.html', context)
     if request.method == "POST" and request.POST.get('submit'):
         print('Printing_POST :', request.POST)
         user_id = request.POST.get('userid')
@@ -62,7 +68,8 @@ def login(request):
 
             else:
                 print("password is in correct")
-                return render(request, 'accounts/login.html')
+                return HttpResponse('<script>alert("Password is wrong")</script>')
+                #return render(request, 'accounts/login.html')
     return render(request, 'accounts/login.html')
 
         #print(data)

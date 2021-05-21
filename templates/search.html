@@ -11,13 +11,57 @@
 {% endblock title %}
 {% block body %}
     <!----searching ---->
-    <!---- ------->
-<div class="container">
-    <div class="row">
-        <div class="col">
+    <!---- Account search------->
+    <div class="container">
+        {% if data %}
+            <div class="row">
+                <div class="col">
+                    <p>Following users found</p>
+                </div>
+            </div>
+            {% for x in data %}
+                <div class="row">
+                    <div class="col offset-1">
+                        <a href="profile?pid={{ x.student_id }}" style="text-decoration: none; font-size: 20px; color: black">{{ x.name }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            <hr>
+        {% endif %}
 
-        </div>
     </div>
-</div>
-
+    <div class="container">
+        {% if data2  %}
+            <div class="row">
+                <div class="col">
+                    <p>These Items were found by someone</p>
+                </div>
+            </div>
+            {% for x in data2  %}
+                <div class="row">
+                    <div class="col">
+                        <a href="userfoundentries?fid={{ x.id }}" style="text-decoration: none;color: #333333">{{ x.item_name }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            <hr>
+        {% endif %}
+    </div>
+    <div class="container">
+        {% if data3  %}
+            <div class="row">
+                <div class="col">
+                    <p>These Items for sale</p>
+                </div>
+            </div>
+            {% for x in data3  %}
+                <div class="row">
+                    <div class="col">
+                        <a href="alladds?itemid={{ x.id }}"style="text-decoration: none;color: #333333" >{{ x.item_name }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            <hr>
+        {% endif %}
+    </div>
 {% endblock body %}
