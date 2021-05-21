@@ -6,6 +6,32 @@ from register.models import Signup
 from register.views import login
 # Create your views here.
 # Community
+class Manage_Post():
+    def __init__(self, name, question_description ,question_id):
+        self.name = name
+        self.question_description = question_description
+        self.id = question_id
+def EditPost(request):
+    context={
+
+    }
+    return render(request,'editpost.html',context)
+def ManagePost(request):
+    a=10
+    ids = request.session['user_id_session_login']
+    data_ids = Signup.objects.get(student_id=ids)
+    data = CommunityQuestion.objects.filter(student_id=data_ids)[:a]
+
+    context={
+        "data":data,
+        "data_ids":data_ids,
+    }
+
+    if request.method == "POST" and request.POST.get('delete'):
+        questionid = request.POST.get('delete')
+        CommunityQuestion.objects.get(question_id=questionid).delete()
+
+    return render(request,'ManagePost.html',context)
 
 def logout(request):
     try:
@@ -22,7 +48,7 @@ class Com():
         self.question_id = question_id
         self.question_description = question_description
 def community(request):
-    
+
     my_obj_list = []
     if request.method == "POST" and request.POST.get('showmore'):
         a=int(request.POST.get('showmore'))

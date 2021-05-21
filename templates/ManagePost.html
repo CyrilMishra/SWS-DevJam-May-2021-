@@ -1,0 +1,45 @@
+
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block title %}
+   Manage Post
+{% endblock title %}
+{% block body %}
+    <!----searching ---->
+    <!---- ------->
+<div class="container">
+    <div class="row">
+    <div class="col-7 m-auto">
+        {% for x in data %}
+            <div class="row">
+                <div class="col">
+                    <strong>{{ data_ids.name }}</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7 offset-1">
+                    <p >{{ x.question_description }} </p>
+                    <form method="post">
+                        {% csrf_token %}
+                            <a href="EditPost?qid={{ x.question_id }}" class="btn btn-outline-primary"  name="edit">Edit</a>
+                            <button class="btn btn-outline-danger" name="delete" value="{{ x.question_id }}" type=" submit">Delete</button>
+                            <a href="communityanswer?key={{ x.question_id }}" class="btn btn btn-primary">Show Response</a>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+            <div class="row">
+                <div class="col">
+                    <button>showmore</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
