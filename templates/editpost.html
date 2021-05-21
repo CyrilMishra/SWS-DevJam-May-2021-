@@ -13,8 +13,25 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                
+                <p>Edit your post<p>
             </div>
         </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                    <div class="col">
+
+                          <div class="form-group">
+                                 <textarea class="form-control" name="EditQuestion" rows="3" placeholder=""  required>{{ data.question_description }}</textarea>
+                          </div>
+
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <button type="submit" name="updatepass" value="{{ data.question_id }}">update</button>
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock body %}

@@ -12,8 +12,16 @@ class Manage_Post():
         self.question_description = question_description
         self.id = question_id
 def EditPost(request):
-    context={
 
+    if request.method == "POST" and request.POST.get('updatepass'):
+        qid = request.POST.get('updatepass')
+        data = CommunityQuestion.objects.get(question_id=qid)
+        data.question_description = request.POST.get('EditQuestion')
+        data.save()
+    qid = request.GET.get('qid')
+    data = CommunityQuestion.objects.get(question_id=qid)
+    context={
+        "data":data
     }
     return render(request,'editpost.html',context)
 def ManagePost(request):
