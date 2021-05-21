@@ -4,6 +4,7 @@ from register.models import Signup
 
 
 
+
 # community
 class CommunityQuestion(models.Model):
     student_id = models.ForeignKey(Signup, on_delete=models.CASCADE, null=True)
@@ -23,4 +24,3 @@ class CommunityAnswer(models.Model):
     answer_discrption = models.TextField()
     upvote = models.IntegerField(null=True, default=0)
     downvote = models.IntegerField(null=True, default=0)
-    answer_assets = models.FileField(null=True)

@@ -10,14 +10,14 @@
 </head>
 {% block body %}
 
-    <h1>This is profile</h1>
+
     <div class="container">
-        <div class="row">
+         <div class="row">
             <div class="col">
-                <div class="row">
-                    message this user
-                    <a href="conversation?sdid={{ info.student_id }}" class="btn btn-primary">click here</a>
+                <h1>Profile</h1>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-6 order-md-last">
                 <div class="row">
                     <div class="col">
@@ -61,6 +61,12 @@
                 </div>
             </div>
 
+            </div>
+            <div class="row">
+                <div class="col-6 m-auto">
+                    Message this user
+                    <a href="conversation?sdid={{ info.student_id }}" class="btn btn-primary">click here</a>
+                </div>
             </div>
         </div>
     </div>
