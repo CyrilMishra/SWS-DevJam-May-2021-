@@ -72,8 +72,7 @@ def login(request):
 
             else:
                 print("password is in correct")
-                return HttpResponse('<script>alert("Password is wrong")</script>')
-                #return render(request, 'accounts/login.html')
+                return render(request, 'accounts/login.html')
     return render(request, 'accounts/login.html')
 
         #print(data)
