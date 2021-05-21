@@ -25,15 +25,15 @@ body {
 /*---------------------------------------*/
 .form-header  {
   background-color: #EFF0F1;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .form-header h1 {
   font-size: 30px;
   text-align:center;
   color:#666;
-  padding:5px 0;
+  padding:20px 0;
   border-bottom:1px solid #cccccc;
 }
 
