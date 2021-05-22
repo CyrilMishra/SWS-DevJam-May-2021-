@@ -1,0 +1,16 @@
+{% extends 'bsi/main.html' %}
+{% load static %}
+
+{% block content %}
+
+ <br>
+<p>Are you sure you want to delete "{{ post }} ?"</p>
+
+<form action = "{% url 'selldelete' post.id %}" method = "POST" >
+    {% csrf_token %}
+    <a href="{% url 'useradds' %}">Cancel</a>
+
+    <input type="submit" name="Confirm">
+</form>
+
+ {% endblock %}

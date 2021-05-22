@@ -7,7 +7,7 @@
  <br>
     <div class="i-am-centered">
 
-<form action="" method = "POST">
+<form action="{% url 'sellupdate' form.id %}" method = "POST">
   {% csrf_token %}
 
             <div class="form-group">

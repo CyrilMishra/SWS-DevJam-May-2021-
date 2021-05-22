@@ -9,4 +9,7 @@ urlpatterns = [
 	path("sellpost",views.sellpost,name="sellpost"),
 	path("useradds",views.useradds,name="useradds"),
 	path("alladds",views.alladds,name="alladds"),
+	path('sellupdate/<str:pk>/',views.sellupdate,name="sellupdate"),
+
+	path("selldelete/<str:pk>/", views.selldelete, name="selldelete"),
 ]
