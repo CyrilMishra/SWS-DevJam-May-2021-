@@ -55,7 +55,7 @@ def login(request):
         }
         return render(request, 'accounts/dashboard.html', context)
     if request.method == "POST" and request.POST.get('submit'):
-        print('Printing_POST :', request.POST)
+        # print('Printing_POST :', request.POST)
         user_id = request.POST.get('userid')
         user_pass = str(request.POST.get('password'))
         try:
@@ -67,7 +67,7 @@ def login(request):
             if datapass == user_pass:
                 #creating session here
                 request.session['user_id_session_login'] = user_id
-                print("login success")
+                # print("login success")
                 context = {
                     "user" : user_id
                 }
@@ -75,7 +75,7 @@ def login(request):
                 #return redirect('home')
 
             else:
-                print("password is in correct")
+                # print("password is in correct")
                 return render(request, 'accounts/login.html')
     return render(request, 'accounts/login.html')
 
