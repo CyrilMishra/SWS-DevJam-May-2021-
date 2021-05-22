@@ -22,7 +22,7 @@ class Signup(models.Model):  # Model class from models module is inherited in cl
     )
     course = models.CharField(max_length=20, verbose_name='Course Name',choices=COURSE)
     password = models.CharField(max_length=100, verbose_name='Password')
-    dob = models.DateTimeField(verbose_name='Date Of Birth')
+    dob = models.DateTimeField(max_length=10,verbose_name='Date Of Birth')
     photo = models.ImageField(verbose_name='Photo',null=True,blank=True)
     mobile_number = models.IntegerField(verbose_name='mobile number')
 
