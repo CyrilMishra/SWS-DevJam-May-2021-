@@ -2,6 +2,9 @@ import community
 from django.urls import path , include
 from . import views
 from community.views import search
+
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
 
 	path("bsihome",views.bsihome,name="bsihome"),
@@ -13,4 +16,4 @@ urlpatterns = [
 	path('sellupdate/<str:pk>/',views.sellupdate,name="sellupdate"),
 	path("search",search,name="search"),
 	path("selldelete/<str:pk>/", views.selldelete, name="selldelete"),
-]
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
