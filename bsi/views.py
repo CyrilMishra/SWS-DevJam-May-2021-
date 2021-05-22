@@ -75,17 +75,7 @@ def alladds(request):
 # -------------------(UPDATE VIEWS) -------------------
 
 def updatePost(request):
-	myid = request.GET.get('pid')
-	print(myid)
-	post = Item.objects.get(id=myid)
-	form = SellForm(instance=post)
 
-	if request.method == 'GET' and request.GET.get('pid'):
-		form = SellForm(request.GET, instance=post)
-		if form.is_valid():
-			form.save()
-			messages.success(request,'Post Updated Successfully')
-			return redirect('useradds')
 	return redirect('updatePost')
 
 
@@ -94,7 +84,7 @@ def sellupdate(request,pk):
 	print(post)
 	form = SellForm(instance=post)
 	if request.method == 'POST':
-		form = SellForm(request.POST, instance=post)
+		form = SellForm(request.POST, request.FILES,instance=post)
 		if form.is_valid():
 			form.save()
 			return redirect('useradds')

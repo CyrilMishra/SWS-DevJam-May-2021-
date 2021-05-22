@@ -17,7 +17,7 @@ class Item(models.Model):  # Model class from models module is inherited in clas
     date_created = models.DateField(null=False, blank=False, auto_now=True)
     item_description = models.CharField(max_length=2000, null=False)
     item_price = models.IntegerField(null=False)
-    item_pic1 = models.ImageField(upload_to='bsi/images',verbose_name='pic1', null=True, blank=True)
+    item_pic1 = models.ImageField(upload_to='bsi/images/',verbose_name='pic1', null=True, blank=True)
     STATUS = (
         ('sold', 'sold'),
         ('available', 'available'),

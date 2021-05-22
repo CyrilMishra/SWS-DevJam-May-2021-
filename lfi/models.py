@@ -76,7 +76,7 @@ class LostItem(models.Model):  # Model class from models module is inherited in 
     shape = models.CharField(max_length=20,choices=SHAPE,default='other')
     author_name = models.CharField(max_length=20,null = True,blank=True)
     company_type = models.CharField(max_length=20,null=True,blank=True,choices=C_TYPE,default='local')
-    item_pic1 = models.ImageField(upload_to='lost/images',verbose_name='pic1',null=True,blank=True)
+    item_pic1 = models.ImageField(upload_to='lost/images/',verbose_name='pic1',null=True,blank=True)
     def __str__(self):
         return self.item_name
 
@@ -146,7 +146,7 @@ class FoundItem(models.Model):  # Model class from models module is inherited in
     shape = models.CharField(max_length=20,choices=SHAPE,default='other')
     author_name = models.CharField(max_length=20,null = True,blank=True)
     company_type = models.CharField(max_length=20,null=True,blank=True,choices=C_TYPE,default='local')
-    item_pic1 = models.ImageField(upload_to='found/images',verbose_name='pic1',null=True,blank=True)
+    item_pic1 = models.ImageField(upload_to='found/images/',verbose_name='pic1',null=True,blank=True)
     STATUS = (
         ('available','available'),
         ('delivered','delivered'),

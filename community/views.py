@@ -135,6 +135,12 @@ def community(request):
 def profile(request):
     if not request.session.has_key('user_id_session_login'):
         return redirect('login')
+    if request.method == "POST" and request.POST.get('submitprofilephoto'):
+        uid = request.session['user_id_session_login']
+        data = Signup.objects.get(student_id=uid)
+        profilepic = request.POST.get('profilephoto')
+        data.photo = profilepic
+        data.save()
     if request.method == "POST" and request.POST.get('change_pass'):
         stid = request.POST.get('student_id')
         info = Signup.objects.get(student_id=stid)
