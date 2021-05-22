@@ -30,7 +30,7 @@ def signup(request):
     form = SignupForm()
     if request.method == 'POST':
         # print('Printing_POST :',request.POST)
-        form = SignupForm(request.POST)
+        form = SignupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/login')

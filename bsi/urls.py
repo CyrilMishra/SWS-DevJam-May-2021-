@@ -16,4 +16,4 @@ urlpatterns = [
 	path('sellupdate/<str:pk>/',views.sellupdate,name="sellupdate"),
 	path("search",search,name="search"),
 	path("selldelete/<str:pk>/", views.selldelete, name="selldelete"),
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
