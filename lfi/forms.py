@@ -16,3 +16,7 @@ class FoundForm(ModelForm):
 		# field = [ 'customer' , 'product']
 		fields = '__all__'
 
+class MatchForm(ModelForm):
+	class meta:
+		model = Matching
+		fields = '__all__'

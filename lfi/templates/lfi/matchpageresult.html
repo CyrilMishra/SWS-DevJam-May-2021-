@@ -1,0 +1,48 @@
+{% extends 'lfi/main.html' %}
+{% block content %}
+
+<br>
+{% if mi %}
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Match Found</h5>
+		</div>
+		<div class="card card-body">
+			<table class="table">
+				<tr>
+					<th>Item</th>
+{#					<th>Pic</th>#}
+					<th>Description</th>
+					<th>Founded By</th>
+                    <th>Course of Founder</th>
+					<th>Match Percent</th>
+					<th>Message</th>
+				</tr>
+				{% for i in mi %}
+					<tr>
+						<td>{{i.name}}</td>
+
+						<td>{{i.description}}</td>
+						<td>{{i.founded_by}}</td>
+						<td>{{i.course}}</td>
+						<td>{{i.match_percent}} %</td>
+						<td>
+							<a class="btn btn-primary  btn-sm btn-block" href="#">Message</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+	
+</div>
+    {% endif %}
+    {% if not mi  %}
+        <h1>No data found</h1>
+    {% endif %}
+
+    <br>
+        <a class="btn btn-primary  btn-sm btn-block" href="{%  url 'userslostentries' %}">Go Back</a>
+
+{% endblock content %}

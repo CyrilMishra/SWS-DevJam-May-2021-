@@ -34,7 +34,7 @@ def sell(request):
 	student_id = Signup.objects.get(student_id=request.session['user_id_session_login'])
 	form = SellForm()
 	if request.method == 'POST':
-		form = SellForm(request.POST, request.FILES)
+		form = SellForm(request.POST)
 		c_id = request.POST.get('student')
 		c_stu_id = Signup.objects.get(id=c_id)
 		print(c_id)
@@ -74,17 +74,25 @@ def alladds(request):
 
 # -------------------(UPDATE VIEWS) -------------------
 
-def updatePost(request):
-
-	return redirect('updatePost')
 
 
 def sellupdate(request,pk):
+	student_id = Signup.objects.get(student_id=request.session['user_id_session_login'])
+
 	post = Item.objects.get(id=pk)
 	print(post)
 	form = SellForm(instance=post)
 	if request.method == 'POST':
-		form = SellForm(request.POST, request.FILES,instance=post)
+		form = SellForm(request.POST, instance=post)
+		c_id = request.POST.get('student')
+		c_stu_id = Signup.objects.get(id=c_id)
+		print(c_id)
+		print(c_stu_id)
+		print(student_id)
+		if c_stu_id != student_id:
+			return HttpResponse(
+				"<strong>Please Select You User Id to Post Add.</strong><br><a href='useradds'><button>Click Hare To Try again</a>")
+
 		if form.is_valid():
 			form.save()
 			return redirect('useradds')
