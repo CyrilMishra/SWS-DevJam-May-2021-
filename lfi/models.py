@@ -5,6 +5,8 @@ from django.db import models
 
 
 # Create your models here.
+from django.db.models import CharField
+
 from register.models import Signup
 
 # class Tag(models.Model):
@@ -138,9 +140,9 @@ class FoundItem(models.Model):  # Model class from models module is inherited in
     date_created = models.DateField(null=False, blank = False, auto_now = True)
     item_description = models.CharField(max_length=2000,null=False)
     item_type = models.CharField(max_length=2000,null=False,choices=TYPE,default='mix')
-    lost_place = models.CharField(max_length=100,null=True,blank=True)
-    lost_time = models.TimeField(auto_now=False)
-    lost_date = models.DateField(null=False, blank = False)
+    found_place = models.CharField(max_length=100,null=True,blank=True)
+    found_time = models.TimeField(auto_now=False)
+    found_date = models.DateField(null=False, blank = False)
     item_price = models.IntegerField(null=False)
     item_color = models.CharField(max_length=20,choices=COLOR,default='mix')
     shape = models.CharField(max_length=20,choices=SHAPE,default='other')
@@ -162,5 +164,5 @@ class Matching(models.Model):
     match_percent = models.IntegerField(null=False,default=0)
 
     def __str__(self):
-        return self.lost_item
+        return self.lost_item.item_name
 # Create your models here.

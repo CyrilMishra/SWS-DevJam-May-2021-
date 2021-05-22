@@ -2,7 +2,7 @@
 {% block content %}
 
 <br>
-{% if items %}
+{% if mi %}
 <div class="row">
 	<div class="col-md">
 		<div class="card card-body">
@@ -12,32 +12,23 @@
 			<table class="table">
 				<tr>
 					<th>Item</th>
-					<th>Pic</th>
+{#					<th>Pic</th>#}
 					<th>Description</th>
 					<th>Founded By</th>
+                    <th>Course of Founder</th>
 					<th>Match Percent</th>
 					<th>Message</th>
 				</tr>
-				{% for uli in items %}
+				{% for i in mi %}
 					<tr>
-						<td>{{uli.item_name}}</td>
-						<td><img src= "{{uli.item_pic1}}">
-						</td>
-						<td>{{uli.item_description}}</td>
-						<td>{{uli.item_type}}</td>
-						<td>{{uli.lost_place}}</td>
-						<td>{{uli.lost_time}}</td>
-						<td>{{uli.lost_date}}</td>
-						<td>Rs {{uli.item_price}}</td>
-						<td>{{uli.item_color}}</td>
-						<td>{{uli.shape}}</td>
-						<td>{{uli.author_name}}</td>
-						<td>{{uli.company_type}}</td>
+						<td>{{i.name}}</td>
+
+						<td>{{i.description}}</td>
+						<td>{{i.founded_by}}</td>
+						<td>{{i.course}}</td>
+						<td>{{i.match_percent}} %</td>
 						<td>
-							<a class="btn btn-primary  btn-sm btn-block" href="{% url 'lostreportupdate' uli.pk %}">Edit</a>
-							<a class="btn btn-primary  btn-sm btn-block" href="{% url 'lostreportdelete' uli.pk %}">Remove</a>
-						</td>
-                        <td><a class="btn btn-primary  btn-sm btn-block" href="{% url 'matchpageresult' uli.pk %}">Remove</a>
+							<a class="btn btn-primary  btn-sm btn-block" href="#">Message</a>
 						</td>
 					</tr>
 				{% endfor %}
@@ -47,11 +38,11 @@
 	
 </div>
     {% endif %}
-    {% if not itemsfound and not items  %}
+    {% if not mi  %}
         <h1>No data found</h1>
     {% endif %}
 
     <br>
-        <a class="btn btn-primary  btn-sm btn-block" href="{%  url 'lfihome' %}">Go Back</a>
+        <a class="btn btn-primary  btn-sm btn-block" href="{%  url 'userslostentries' %}">Go Back</a>
 
 {% endblock content %}
