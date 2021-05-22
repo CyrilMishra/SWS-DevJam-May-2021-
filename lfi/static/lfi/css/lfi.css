@@ -1,0 +1,11 @@
+body , html {
+    height: 100%;
+}
+#bg {
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    height: 100%;
+}
