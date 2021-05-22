@@ -71,8 +71,6 @@ def founditemadded(request):
     return render(request, 'lfi/founditemadded.html')
 
 
-def matchingitems(request):
-    return HttpResponse('match Page work in progress >/ >/ >/')
 
 
 def userfoundentries(request):
@@ -137,3 +135,8 @@ def foundreportupdate(request,pk):
             return redirect('userfoundentries')
     context = {'form': form}
     return render(request, 'lfi/foundreport.html', context)
+
+
+
+def matchpageresult(request,pk):
+    return HttpResponse('match page result in progress')
