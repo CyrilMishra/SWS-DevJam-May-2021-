@@ -54,9 +54,9 @@ def lostreport(request):
         form = LostForm(request.POST)
         c_id = request.POST.get('student')
         c_stu_id = Signup.objects.get(id=c_id)
-        print(c_id)
-        print(c_stu_id)
-        print(student_id)
+        # print(c_id)
+        # print(c_stu_id)
+        # print(student_id)
         if c_stu_id != student_id:
             return HttpResponse(
                 "<strong>Please Select You User Id to Post Add.</strong><br><a href='foundreport'><button>Click Hare To Try again</a>")
@@ -81,9 +81,9 @@ def foundreport(request):
         form = FoundForm(request.POST)
         c_id = request.POST.get('student')
         c_stu_id = Signup.objects.get(id=c_id)
-        print(c_id)
-        print(c_stu_id)
-        print(student_id)
+        # print(c_id)
+        # print(c_stu_id)
+        # print(student_id)
         if c_stu_id != student_id:
             return HttpResponse(
                 "<strong>Please Select You User Id to Post Add.</strong><br><a href='foundreport'><button>Click Hare To Try again</a>")
@@ -146,15 +146,15 @@ def lostreportupdate(request,pk):
     student_id = Signup.objects.get(student_id=request.session['user_id_session_login'])
 
     report = LostItem.objects.get(id=pk)
-    print(pk)
+    # print(pk)
     form = LostForm(instance = report)
     if request.method == 'POST':
         form = LostForm(request.POST, instance=report)
         c_id = request.POST.get('student')
         c_stu_id = Signup.objects.get(id=c_id)
-        print(c_id)
-        print(c_stu_id)
-        print(student_id)
+        # print(c_id)
+        # print(c_stu_id)
+        # print(student_id)
         if c_stu_id != student_id:
             return HttpResponse(
                 "<strong>Please Select You User Id to Post Add.</strong><br><a href=''><button>Click Hare To Try again</a>")
@@ -170,16 +170,16 @@ def foundreportupdate(request,pk):
     student_id = Signup.objects.get(student_id=request.session['user_id_session_login'])
 
     report = FoundItem.objects.get(id=pk)
-    print(pk)
+    # print(pk)
     # form = FoundForm()
     form = FoundForm(instance = report)
     if request.method == 'POST':
         form = FoundForm(request.POST, instance=report)
         c_id = request.POST.get('student')
         c_stu_id = Signup.objects.get(id=c_id)
-        print(c_id)
-        print(c_stu_id)
-        print(student_id)
+        # print(c_id)
+        # print(c_stu_id)
+        # print(student_id)
         if c_stu_id != student_id:
             return HttpResponse(
                 "<strong>Please Select You User Id to Post Add.</strong><br><a href=''><button>Click Hare To Try again</a>")

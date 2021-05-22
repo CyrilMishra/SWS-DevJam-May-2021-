@@ -91,8 +91,8 @@ def community(request):
             name = Signup.objects.get(student_id=x.student_id)
             obj = Com(x.student_id, name.name, x.question_id, x.question_description)
             my_obj_list.append(obj)
-        for x in my_obj_list:
-            print(x.stu_name)
+        # for x in my_obj_list:
+        # print(x.stu_name)
     else:
         a = 5;
         data = CommunityQuestion.objects.all()[:a]
@@ -100,8 +100,8 @@ def community(request):
             name = Signup.objects.get(student_id=x.student_id)
             obj = Com(x.student_id, name.name, x.question_id, x.question_description)
             my_obj_list.append(obj)
-        for x in my_obj_list:
-            print(x.stu_name)
+        # for x in my_obj_list:
+        #     print(x.stu_name)
     # print(data)
     context = {
         "student_question": my_obj_list,
@@ -110,8 +110,8 @@ def community(request):
     if request.method == "GET" and request.GET.get('subque'):
         qid = request.GET.get('subque')
         ans = request.GET.get('answer')
-        print(qid)
-        print(ans)
+        # print(qid)
+        # print(ans)
         ids = request.session['user_id_session_login']
         query_question = CommunityQuestion.objects.get(question_id=qid)
         query_User_id = Signup.objects.get(student_id=ids)
@@ -164,7 +164,7 @@ def profile(request):
         gender = request.POST.get('gender')
         dob = request.POST.get('dob')
         mobile = request.POST.get('mobilenumber')
-        print(stid)
+        # print(stid)
         try:
             obj_users = Signup.objects.get(student_id=stid)
             obj_users.name = name
@@ -271,7 +271,8 @@ def communityanswer(request):
             qid = request.GET.get('key')
             data_quuestion = CommunityQuestion.objects.get(question_id=qid)
             data_student = Signup.objects.get(student_id=stuid)
-            cmans = CommunityAnswer(question_id=data_quuestion, student_id=data_student, answer_discrption=ansdes,answer_assets=file)
+            cmans = CommunityAnswer(question_id=data_quuestion, student_id=data_student, answer_discrption=ansdes,
+                                    answer_assets=file)
             cmans.save()
         # answer_discription
         return render(request, 'communityanswer.html', context)
@@ -310,6 +311,7 @@ def search(request):
     }
     return render(request, 'search.html', context)
 
+
 def updatelogout(request):
     try:
         del request.session['user_id_session_login']
@@ -317,6 +319,8 @@ def updatelogout(request):
         pass
     else:
         return HttpResponse("<strong>password is changed.</strong><br><a href='login'>click here to login</a>")
+
+
 def updatefaultlogout(request):
     try:
         del request.session['user_id_session_login']
@@ -324,6 +328,8 @@ def updatefaultlogout(request):
         pass
     else:
         return HttpResponse("<strong>old password do not match.</strong><br><a href='login'>click here to login</a>")
+
+
 def updatepass(request):
     if request.method == "POST" and request.POST.get('changepasswordconfirm'):
         uid = request.POST.get('changepasswordconfirm')
@@ -331,12 +337,11 @@ def updatepass(request):
         oldpass = request.POST.get('oldpass')
         newpass = request.POST.get('newpass')
         if data.password == oldpass:
-            data.password= newpass
+            data.password = newpass
             data.save()
             return redirect('updatelogout')
         else:
             return redirect('updatefaultlogout')
-
 
     if not request.session.has_key('user_id_session_login'):
         return redirect('login')
@@ -344,5 +349,5 @@ def updatepass(request):
     changeid = request.GET.get('changeid')
     if changeid != usid:
         return redirect('logout')
-    else :
-        return render(request,'updatepass.html',{"usid":usid})
+    else:
+        return render(request, 'updatepass.html', {"usid": usid})
