@@ -303,3 +303,40 @@ def search(request):
         "data3": data3,
     }
     return render(request, 'search.html', context)
+
+def updatelogout(request):
+    try:
+        del request.session['user_id_session_login']
+    except:
+        pass
+    else:
+        return HttpResponse("<strong>password is changed.</strong><br><a href='login'>click here to login</a>")
+def updatefaultlogout(request):
+    try:
+        del request.session['user_id_session_login']
+    except:
+        pass
+    else:
+        return HttpResponse("<strong>old password do not match.</strong><br><a href='login'>click here to login</a>")
+def updatepass(request):
+    if request.method == "POST" and request.POST.get('changepasswordconfirm'):
+        uid = request.POST.get('changepasswordconfirm')
+        data = Signup.objects.get(student_id=uid)
+        oldpass = request.POST.get('oldpass')
+        newpass = request.POST.get('newpass')
+        if data.password == oldpass:
+            data.password= newpass
+            data.save()
+            return redirect('updatelogout')
+        else:
+            return redirect('updatefaultlogout')
+
+
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
+    usid = request.session['user_id_session_login']
+    changeid = request.GET.get('changeid')
+    if changeid != usid:
+        return redirect('logout')
+    else :
+        return render(request,'updatepass.html',{"usid":usid})

@@ -20,6 +20,8 @@ def logout(request):
 
 
 def home(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
 
     return render(request, 'accounts/dashboard.html')
 
@@ -38,6 +40,8 @@ def signup(request):
 
 
 def update_profile(request, pk):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     form = SignupForm()
     context = {}
     return render(request, 'accounts/signup_form.html', context)

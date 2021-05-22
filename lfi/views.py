@@ -17,6 +17,8 @@ def logout(request):
         return HttpResponse("<strong>You are logged out.</strong>")
 
 def lfihome(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     li = LostItem.objects.all()
 
     total_lost_items = li.count()
@@ -31,6 +33,8 @@ def lfihome(request):
 
 
 def lostreport(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     form = LostForm()
     if request.method == 'POST':
         # print('Printing_POST :',request.POST)
@@ -43,6 +47,10 @@ def lostreport(request):
 
 
 def foundreport(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     form = FoundForm()
     if request.method == 'POST':
         # print('Printing_POST :',request.POST)

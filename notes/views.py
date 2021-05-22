@@ -8,22 +8,30 @@ from lfi.views import *
 
 
 def home(request):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     courses = Course.objects.all()
     return render(request, 'home.html', {'courses': courses})
 
 
 def course_file(request, pk):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     course = Course.objects.get(pk=pk)
     return render(request, 'course_file.html', {'course': course})
 
 
 def view_files(request, pk):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
     course = Course.objects.get(pk=pk)
 
     documents = Document.objects.filter(course_name=course.name)
     return render(request, 'view_files.html', {'documents': documents})
 
 def upload_file(request,pk):
+    if not request.session.has_key('user_id_session_login'):
+        return redirect('login')
 
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
