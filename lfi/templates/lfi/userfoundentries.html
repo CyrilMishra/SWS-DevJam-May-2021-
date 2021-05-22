@@ -92,8 +92,8 @@
 						<td>{{fli.author_name}}</td>
 						<td>{{fli.company_type}}</td>
 						<td>
-							<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'foundreport' %}">Edit</a>
-							<a class="btn btn-primary  btn-sm btn-block" href="">Remove</a>
+							<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'foundreportupdate' fli.pk %}">Edit</a>
+							<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'foundreportudelete' fli.pk %}">Remove</a>
 						</td>
 					</tr>
 				{% endfor %}

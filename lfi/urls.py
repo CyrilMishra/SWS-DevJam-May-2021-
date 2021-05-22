@@ -11,4 +11,11 @@ urlpatterns = [
 	path("matchingitems",views.matchingitems,name="matchingitems"),
 	path("userfoundentries",views.userfoundentries,name="userfoundentries"),
 	path("userslostentries",views.userslostentries,name="userslostentries"),
+
+	path("foundreportdelete/<str:pk>/", views.foundreportdelete, name="foundreportdelete"),
+	path("lostreportdelete/<str:pk>/", views.lostreportdelete, name="lostreportdelete"),
+
+	path("foundreportupdate/<str:pk>/", views.foundreportupdate, name="foundreportupdate"),
+	path("lostreportupdate/<str:pk>/", views.lostreportupdate, name="lostreportupdate"),
+
 ]

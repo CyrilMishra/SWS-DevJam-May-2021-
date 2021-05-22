@@ -4,12 +4,66 @@
 
 {% block content %}
 
- <br>
 <form action="" method = "POST">
   {% csrf_token %}
-  {{form}}
+
+            <div class="form-group">
+                <label>Item Name </label>
+                {{ form.item_name }}
+            </div>
+            <div class="form-group">
+                <label>Price </label>
+                {{ form.item_price }}
+            </div>
+            <div class="form-group">
+                <label>Select You User ID Only</label>
+                {{ form.student }}
+            </div>
+            <div class="form-group">
+                <label>Item Description</label>
+                {{ form.item_description }}
+            </div>
+            <div class="form-group">
+                <label>Item Type</label>
+                {{ form.item_type }}
+            </div>
+            <div class="form-group">
+                <label>Lost Place</label>
+                {{ form.lost_place }}
+            </div>
+            <div class="form-group">
+                <label>Lost Around Time</label>
+                {{ form.item_time }}
+            </div>
+            <div class="form-group">
+                <label>Item Lost Date</label>
+                {{ form.item_date }}
+            </div>
+            <div class="form-group">
+                <label>Item Color</label>
+                {{ form.item_color }}
+            </div>
+            <div class="form-group">
+                <label>Item Company Type</label>
+                {{ form.company_type }}
+            </div>
+            <div class="form-group">
+                <label>Item Shape</label>
+                {{ form.shape }}
+            </div>
+            <div class="form-group">
+                <label>Author name/ Made by</label>
+                {{ form.author_name }}
+            </div>
+            <div class="form-group">
+                <label>Item Pic</label>
+                {{ form.item_pic1 }}
+            </div>
+<br>
   <input type="submit" name="Submit">
 
 </form>
-
+    <br>
+    <br>
+        <a href="{% url 'lfihome' %}"> Go Back </a>
  {% endblock %}

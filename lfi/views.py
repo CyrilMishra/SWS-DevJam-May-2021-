@@ -57,7 +57,7 @@ def foundreport(request):
         form = FoundForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('LFI/founditemadded')
+            return redirect('founditemadded')
     context = {'form': form}
     return render(request, 'lfi/foundreport.html', context)
 
@@ -89,3 +89,45 @@ def userslostentries(request):
     return render(request, 'lfi/userslostentries.html', {'items': items})
 
 # Create your views here.
+
+
+def lostreportdelete(request,pk):
+    report = LostItem.objects.get(id=pk)
+    if request.method == "POST":
+        report.delete()
+        return redirect('lostentryadded')
+    context = { 'report':report}
+    return render(request,'lfi/userslostentries.html',context)
+
+
+def foundreportdelete(request, pk):
+    report = FoundItem.objects.get(id=pk)
+    if request.method == "POST":
+        report.delete()
+        return redirect('founditemadded')
+    context = {'report': report}
+    return render(request, 'lfi/usersfoundentries.html', context)
+
+
+def lostreportupdate(request,pk):
+    report = LostItem.objects.get(id=pk)
+    form = LostForm(instance = report)
+    if request.method == 'POST':
+        form = LostForm(request.POST, instance=report)
+        if form.is_valid():
+            form.save()
+            return redirect('userslostentries')
+    context = {'form': form}
+    return render(request, 'lfi/lostreport.html', context)
+
+
+def foundreportupdate(request,pk):
+    report = FoundItem.objects.get(id=pk)
+    form = FoundForm(instance = report)
+    if request.method == 'POST':
+        form = FoundForm(request.POST, instance=report)
+        if form.is_valid():
+            form.save()
+            return redirect('usersfoundentries')
+    context = {'form': form}
+    return render(request, 'lfi/foundreport.html', context)
