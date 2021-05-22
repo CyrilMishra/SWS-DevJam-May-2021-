@@ -33,11 +33,17 @@
                 </div>
             </div>
         {% endfor %}
+        {% if data %}
             <div class="row">
                 <div class="col">
                     <button>showmore</button>
                 </div>
             </div>
+        {% endif %}
+        {% if not data %}
+
+            <h1 style="color: black">No data found</h1>
+        {% endif %}
         </div>
     </div>
 </div>
