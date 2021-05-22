@@ -2,7 +2,7 @@
 {% block content %}
 
 <br>
-
+{% if items %}
 <div class="row">
 	<div class="col-md">
 		<div class="card card-body">
@@ -28,7 +28,7 @@
 				{% for uli in items %}
 					<tr>
 						<td>{{uli.item_name}}</td>
-						<td><img src= "{{uli.item_pic1}}">
+						<td><img src= "/media/{{uli.item_pic1}}">
 						</td>
 						<td>{{uli.item_description}}</td>
 						<td>{{uli.item_type}}</td>
@@ -51,5 +51,12 @@
 	</div>
 	
 </div>
+    {% endif %}
+    {% if not itemsfound and not items  %}
+        <h1>No data found</h1>
+    {% endif %}
+
+    <br>
+        <a class="btn btn-primary  btn-sm btn-block" href="{%  url 'lfihome' %}">Go Back</a>
 
 {% endblock content %}

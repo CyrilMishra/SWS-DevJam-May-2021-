@@ -30,7 +30,7 @@
 					<tr>
 						<td>{{fli.item_name}}</td>
 						<td>
-							<img src="{{fli.item_pic1}}"></td>
+							<img src="/media/{{fli.item_pic1}}"></td>
 						<td>{{fli.item_description}}</td>
 						<td>{{fli.item_type}}</td>
 						<td>{{fli.lost_place}}</td>
@@ -93,7 +93,7 @@
 						<td>{{fli.company_type}}</td>
 						<td>
 							<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'foundreportupdate' fli.pk %}">Edit</a>
-							<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'foundreportudelete' fli.pk %}">Remove</a>
+							<a class="btn btn-primary  btn-sm btn-block" href="{%  url 'foundreportdelete' fli.pk %}">Remove</a>
 						</td>
 					</tr>
 				{% endfor %}
@@ -107,4 +107,7 @@
     {% if not itemsfound and not items  %}
         <h1>No data found</h1>
     {% endif %}
+    <br>
+    <a class="btn btn-primary  btn-sm btn-block" href="{%  url 'lfihome' %}">Go Back</a>
+
 {% endblock content %}

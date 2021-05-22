@@ -70,13 +70,13 @@ class LostItem(models.Model):  # Model class from models module is inherited in 
     item_type = models.CharField(max_length=2000,null=False,choices=TYPE,default='mix')
     lost_place = models.CharField(max_length=100,null=True,blank=True)
     lost_time = models.TimeField(auto_now=False)
-    lost_date = models.DateField(null=False, blank = False, auto_now = True)
+    lost_date = models.DateField(null=False, blank = False)
     item_price = models.IntegerField(null=False)
     item_color = models.CharField(max_length=20,choices=COLOR,default='mix')
     shape = models.CharField(max_length=20,choices=SHAPE,default='other')
     author_name = models.CharField(max_length=20,null = True,blank=True)
     company_type = models.CharField(max_length=20,null=True,blank=True,choices=C_TYPE,default='local')
-    item_pic1 = models.ImageField(verbose_name='pic1',null=True,blank=True)
+    item_pic1 = models.ImageField(upload_to='lost/images/',verbose_name='pic1',null=True,blank=True)
     def __str__(self):
         return self.item_name
 
@@ -140,13 +140,13 @@ class FoundItem(models.Model):  # Model class from models module is inherited in
     item_type = models.CharField(max_length=2000,null=False,choices=TYPE,default='mix')
     lost_place = models.CharField(max_length=100,null=True,blank=True)
     lost_time = models.TimeField(auto_now=False)
-    lost_date = models.DateField(null=False, blank = False, auto_now = True)
+    lost_date = models.DateField(null=False, blank = False)
     item_price = models.IntegerField(null=False)
     item_color = models.CharField(max_length=20,choices=COLOR,default='mix')
     shape = models.CharField(max_length=20,choices=SHAPE,default='other')
     author_name = models.CharField(max_length=20,null = True,blank=True)
     company_type = models.CharField(max_length=20,null=True,blank=True,choices=C_TYPE,default='local')
-    item_pic1 = models.ImageField(verbose_name='pic1',null=True,blank=True)
+    item_pic1 = models.ImageField(upload_to='found/images/',verbose_name='pic1',null=True,blank=True)
     STATUS = (
         ('available','available'),
         ('delivered','delivered'),

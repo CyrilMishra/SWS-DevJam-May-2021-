@@ -30,7 +30,7 @@ def signup(request):
     form = SignupForm()
     if request.method == 'POST':
         # print('Printing_POST :',request.POST)
-        form = SignupForm(request.POST)
+        form = SignupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/login')
@@ -85,4 +85,6 @@ def login(request):
 
 
 def user_registration(request):
+    if request.session.has_key('user_id_session_login'):
+        return redirect('login')
     return render(request, 'accounts/user_registration.html')

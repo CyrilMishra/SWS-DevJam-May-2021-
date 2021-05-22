@@ -1,4 +1,4 @@
-{% extends 'bsi/main.html' %}
+{% extends 'lfi/main.html' %}
 {% load static %}
 
 {% block content %}
@@ -8,7 +8,7 @@
 
 <form action = "{% url 'lostreportdelete' report.id %}" method = "POST" >
     {% csrf_token %}
-    <a href="{% url 'lostentryadded' %}">Cancel</a>
+    <a href="{% url 'userslostentries' %}">Cancel</a>
 
     <input type="submit" name="Confirm">
 </form>
