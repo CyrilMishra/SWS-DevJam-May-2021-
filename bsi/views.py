@@ -1,10 +1,11 @@
+import community
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from .forms import SellForm
 from .models import *
-
+from community.views import search
 
 # Create your views here.
 def logout(request):

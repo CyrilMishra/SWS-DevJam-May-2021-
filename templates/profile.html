@@ -21,7 +21,13 @@
             <div class="col-md-6 order-md-last">
                 <div class="row">
                     <div class="col">
-                        <img src="{% static 'profile.png'%}">
+                        {% if  not info.photo %}
+                            <img src="{% static 'profile.png' %}">
+                        {% endif %}
+                        {% if info.photo %}
+                        <img src="/media/{{ info.photo }}">
+                        {% endif %}
+
                     </div>
                 </div>
                 <div class="row">
