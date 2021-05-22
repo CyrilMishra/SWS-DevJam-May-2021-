@@ -44,6 +44,7 @@
 
 <div class="container">
     <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
 	{% csrf_token %}
         <div class="row">
             <div class="col-8 m-auto">
