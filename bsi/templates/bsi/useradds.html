@@ -21,7 +21,7 @@
 				{% for i in items %}
 					<tr>
 						<td>{{i.item_name}}</td>
-						<td><img src = "{{i.item_pic1}}"></td>
+						<td><img style="height: 300px;width: 150px" src = "/media/{{i.item_pic1}}"></td>
 						<td>{{i.item_description}}</td>
 						<td>Rs {{i.item_price}}</td>
                         <td>{{ i.status }}</td>
