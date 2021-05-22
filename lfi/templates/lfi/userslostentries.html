@@ -41,8 +41,8 @@
 						<td>{{uli.author_name}}</td>
 						<td>{{uli.company_type}}</td>
 						<td>
-							<a class="btn btn-primary  btn-sm btn-block" href="">Edit</a>
-							<a class="btn btn-primary  btn-sm btn-block" href="">Remove</a>
+							<a class="btn btn-primary  btn-sm btn-block" href="{% url 'lostreportupdate' uli.pk %}">Edit</a>
+							<a class="btn btn-primary  btn-sm btn-block" href="{% url 'lostreportdelete' uli.pk %}">Remove</a>
 						</td>
 					</tr>
 				{% endfor %}

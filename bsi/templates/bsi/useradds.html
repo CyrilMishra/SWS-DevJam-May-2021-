@@ -15,6 +15,7 @@
 					<th>Pic</th>
 					<th>Description</th>
 					<th>Price</th>
+                    <th>Status</th>
 					<th>Actions</th>
 				</tr>
 				{% for i in items %}
@@ -23,13 +24,11 @@
 						<td><img src = "{{i.item_pic1}}"></td>
 						<td>{{i.item_description}}</td>
 						<td>Rs {{i.item_price}}</td>
-                        <form action="sell" method="POST">
-                            {% csrf_token %}
+                        <td>{{ i.status }}</td>
 						<td>
-							<a class="btn btn-primary  btn-sm btn-block" name="edit" href="sell?kid={{ i.pk }}">Edit</a>
-							<a class="btn btn-primary  btn-sm btn-block"  name ="remove" href="deletePost?kid={{ i.pk }}">Remove</a>
+							<a class="btn btn-primary  btn-sm btn-block" name="edit" href="{% url 'sellupdate' i.pk %}">Edit</a>
+							<a class="btn btn-primary  btn-sm btn-block"  name ="remove" href="{% url 'selldelete' i.pk %}">Remove</a>
 						</td>
-                        </form>
 					</tr>
 				{% endfor %}
 			</table>
