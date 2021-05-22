@@ -85,4 +85,6 @@ def login(request):
 
 
 def user_registration(request):
+    if request.session.has_key('user_id_session_login'):
+        return redirect('login')
     return render(request, 'accounts/user_registration.html')

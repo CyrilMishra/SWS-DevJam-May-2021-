@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from . import views
 from .models import *
+import community
+from community.views import search
 from .forms import *
 
 
