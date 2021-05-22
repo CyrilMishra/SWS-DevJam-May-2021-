@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+    <div style="padding:40px;margin:40px;border:2px solid #ccc">
     <h1>Documents</h1>
     <hr>
     <br>
@@ -44,7 +44,7 @@
             <td>{{ document.subject }}</td>
             <td>{{ document.title }}</td>
             <td>
-                <a href={{ document.file.url }} download class="btn btn-primary btn-sm">Download</a>
+                <a href={{ document.file.url }} class="btn btn-primary btn-sm" type="_blank">Download</a>
             </td>
           </tr>
         {% endfor %}

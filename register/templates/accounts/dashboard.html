@@ -16,7 +16,7 @@
 }
 </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'register/css/register.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}" >
     <link rel="stylesheet" type="text/css" href="{% static '/css/button.css' %}" >
     <title>
@@ -24,7 +24,7 @@
 
     </title>
   </head>
-  <body>
+  <body id="bg" style="background-image: url('{% static "register/images/3.jpg " %}');">
 
 {% include 'accounts/navbar.html' %}
 

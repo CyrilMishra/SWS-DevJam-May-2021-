@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Courses
 {% endblock %}
 
 {% block body %}
-    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+    <div style="padding:40px;margin:40px;border:2px solid #ccc">
     <h1>Courses</h1>
     <hr>
-    <br>
     <ul>
     {% for course in courses %}
        <li>
@@ -17,5 +16,6 @@
         <br>
     {% endfor %}
     </ul>
+    </div>
     </div>
 {% endblock %}
